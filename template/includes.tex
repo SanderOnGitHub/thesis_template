@@ -1,0 +1,75 @@
+% !TEX root = ../thesis.tex
+%% General Structure
+\usepackage{scrhack} % fix scrbook warning
+\usepackage{lipsum} % dummy text
+\usepackage{xargs}
+
+\usepackage[ngerman]{babel}
+\usepackage{soul}
+
+\usepackage{caption}
+\usepackage{subcaption}
+\usepackage{enumitem}
+\renewcommand{\theenumi}{\Roman{enumi}}
+\usepackage[bookmarks, colorlinks=true]{hyperref}
+\let\oldUrl\url
+\renewcommand{\url}[1]{\href{#1}{Link}} % Do not show full url in bibliography
+
+\AtBeginDocument{% optionally set colors to your liking
+  \hypersetup{
+    linkcolor=black,
+    citecolor=black,
+    urlcolor=black,
+  }%
+}%
+
+\usepackage{pdfpages}
+\usepackage{comment}
+
+\usepackage[acronym, numberedsection]{glossaries}
+\makenoidxglossaries
+
+\usepackage{cleveref}
+\usepackage[backend=biber,sortlocale=de_DE]{biblatex}
+\usepackage{csquotes}
+
+\usepackage{booktabs,multirow,multicol} 		% Table format
+\usepackage{tabularx} % Linebreake in Table
+\usepackage{listings}
+
+%% Drawings and Plots
+\usepackage[mode=buildnew]{standalone}      % Figures in standalone files
+%\usepackage{luatex85, shellesc}
+\usepackage{graphicx}
+\usepackage{tikz}           % Draw pictures
+\usetikzlibrary{calc, decorations}
+\usepackage{pgfplots} 		% Use for printing diagrams
+\pgfplotsset{compat=1.14,
+  colormap name=viridis,         % Python default color scheme
+  scatter/use mapped color={draw opacity=0,fill=mapped color}    % scatter plots: remove darker borders on marks
+}
+
+%% Mathematics and Science 
+\usepackage{mathtools}
+\usepackage[separate-uncertainty=true]{siunitx}        % Annotation for SI Units
+\sisetup{locale = DE}
+
+% \usepackage[version=4]{mhchem}         % Chem. equations
+% \usepackage{chemfig}        % Chem. figures
+
+\usepackage{xcolor}
+% Eigene Farben festlegen
+\definecolor{haw1}{RGB}{0,60,160}
+\definecolor{haw2}{RGB}{160,190,220}
+\definecolor{haw2}{RGB}{0,150,210}
+
+\definecolor{red}{RGB}{215,25,28}
+\definecolor{orange}{RGB}{253,174,97}
+\definecolor{yellow}{RGB}{255,255,191}
+\definecolor{green}{RGB}{171,221,164}
+\definecolor{blue}{RGB}{43,131,186}
+
+% Eigene ListenSymbole
+\renewcommand\labelitemi{$-$}
+\renewcommand\labelitemii{$=$}
+\renewcommand\labelitemiii{$\equiv$}

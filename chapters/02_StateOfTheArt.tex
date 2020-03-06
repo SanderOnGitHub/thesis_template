@@ -1,0 +1,668 @@
+% !TEX root = ../thesis.tex
+\chapter{Methoden}
+
+% \paragraph{Methodenkapitel:}\hl{Um die intersubjektive Nachvollziehbarkeit zu gewährleisten, muss die gewählte Methode beschrieben werden. Diesbezüglich gibt es unterschiedliche Herangehensweisen in den einzelnen Fachgebieten. Du solltest Dich deswegen über die Konventionen Deines Fachgebietes informieren.}
+In diesem Kapitel werden die verwendeten Methoden zur Aufnahme der photoakustischen Daten, sowie die Methoden zu deren Auswertung beschrieben.
+Dazu zählt das Vorgehen bei der Messung, die Betrachtung von Fehlerquellen, welche bei der Photoakustik auftreten, das Verfahren zur Erstellung eines kontinuierlichen Spektrums aus den diskreten Messdaten und schlussendlich verschiedene Methoden der multivariaten Datenanalyse. 
+
+\section{Photakustische Spektren}
+Die photoakustischen Spektren der aufgenommen Gasgemische bilden die Grundlage für die spätere Datenanalyse.
+Deshalb wird in den folgenden Unterkapiteln: \nameref{Spektren aufnehmen} und \nameref{Spektren aufbereiten} das Vorgehen zur Erstellung der Spektren definiert.%, so bleiben die Spektren vergleichbar und der Fehler wird reduziert.
+
+\subsection{Spektren aufnehmen} \label{Spektren aufnehmen}
+Ein definierter Messablauf hilft eine gute Vergleichbarkeit der Spektren zu gewährleisten und den induzierten Fehler bei der Messung zu reduzieren.
+Folgendes bezieht sich auf die Messaufgabe und den Messablauf:
+
+\begin{description}
+    \item[Messaufgabe und Messgröße] %\hl{Eindeutige Definition der Messaufgabe (Messproblem) und der Messgröße: Die Aufgabe, das Messobjekt und die physikalische Messgröße sind festzulegen.}
+        Die Messaufgabe besteht in der Bestimmung von Konzentrationen bestimmter Stoffe in einem Gemisch aus Gasen.
+        Hier werden die flüchtigen Kohlenwasserstoffverbindungen: Butanone, 1-Propanol, Isopren, Ethylbenzol, Styrol und Hexanal untersucht.
+        Bei der Messgröße handelt es sich in der \gls{PAS} um den, in der \gls{PA} Zelle gemessenen Schalldruck.
+        %Konzentration anderer Stoffe in den Gemischen ist nicht von direktem Interesse.
+    
+    \item[Maßeinheit des Ergebnises] %\hl{Festlegung der Maßeinheit für das Ergebnis:}
+        Der Stoffmengenanteil $x_i~=~n_i~\cdot~n^{-1}$ als Messergebnis wird in parts per million (\si{ppm}), also ein Millionstel des Gesamtteilchenanzahl, dargestellt.
+        Dabei soll eine Genauigkeit von \SI{2}{\percent} relativ zur Konzentration erreicht werden.
+    
+    \item[Randbedingungen] %\hl{Zusammenstellen der Randbedingungen:}
+        Die Messungen werden in einem nicht klimatisierten Laborraum ausgeführt.
+        Während der Messungen ist die Probe zwischen \num{18} und \SI{26}{\celsius} warm, der herrschende Druck entspricht dem Umgebungsdruck von \SI{1014+-10}{\milli\bar}.
+        Die \gls{VOC}s befinden sich in gasförmigem Zustand und sind in reinem Stickstoff gelöst.
+        % Um einen Gasaustausch zwischen Probe und Umgebung zu vermeiden wird eine nahezu hermetische Messzelle verwendet.
+        % Die Zusammensetzung der Umgebungsluft entspricht der typischen Atmosphärenzusammensetzung aus \SI{78}{\percent} Stickstoff (\ce{N2}), \SI{21}{\percent} Sauerstoff (\ce{O2}) und \SI{1}{\percent} an Spurengasen wie Argon (\ce{Ar}), Kohlenstoffdioxid (\ce{CO2}), Methan (\ce{CH4}), Ozon (\ce{O3}) und Schwefeldioxid (\ce{SO2}).
+
+    \item[Messeinrichtung] %\hl{Wahl einer Messeinrichtung oder eines Messgerätes:}
+        % Ausgehend vom Messprinzip und der Messmethode wird ein Messverfahren entwickelt, das in einer Messeinrichtung verwirklicht wird. Vielfach steht bereits ein fertiges Messgerät für die Messaufgabe zur Verfügung. (Definitionen der Begriffe siehe unten)
+        Basierend auf den Anforderungen der Messaufgabe kommt eine photoakustischer Sensor zum Einsatz.
+        Durch eine variable Strahlungsquelle erlaubt dieser eine spektroskopische Untersuchung der Probe.
+        Um Konzentrationen aus den Spektren der zuvor genannten flüchtigen Kohlenwasserstoffe zu gewinnen wird ein breitbandiges Spektrum von \SI{3.2}{\micro\meter} bis \SI{3.6}{\micro\meter} aufgezeichnet. 
+        % Ein Verfahren, bei dem durch Absorption Druck in einer Zelle aufgebaut wird und so durch periodische Anregung ein akustisches Signal erzeugt wird.
+        % Die Messgröße ist hier das photoakustische Signal, welches von der Anregung, Zellgeometrie, Druck, Temperatur und Messobjekt abhängig ist.
+        % Abhängig vom gewählten Wellenlängenbereich der anregenden Strahlungsquell lassen sich aus den erzeugten Spektren Elemente, Molekühle und deren Zusammensetzung ableiten.
+        Die anschließende Auswertung der Spektren erfolgt durch multivariate Analysemethoden, hierbei sollen unterschiedliche Verfahren miteinander verglichen werden.
+    
+    \item[Kalibrierung] %\hl{Kalibrieren von Messeinrichtung/Messgerät:}
+        % DIN EN ISO 9001 fordert die Rückführbarkeit aller Messungen auf nationale Normale. Dieses wird durch das Verfahren der Messmittelüberwachung gesichert. Dazu soll ein Messgerät in regelmäßigen Abständen kalibriert werden. Dabei ermittelt man den Messwert (Ausgangsgröße) bei einem als richtig anzusehenden Wert der Messgröße (Eingangsgröße). Falls der Messwert nicht mit dem Wert der Messgröße innerhalb vorgegebener Fehlergrenzen übereinstimmt, ist das Gerät neu zu justieren (einzustellen) oder die ermittelten Werte sind nachträglich rechnerisch zu korrigieren.
+        Der Messaufbau wird vor Beginn der Messungen so eingerichtet, dass die Probe durch eine möglichst hohe Leistung angeregt wird.
+        Die einzelnen Komponenten des Messaufbaus werden von den Herstellern in regelmäßigen Abständen kalibriert. 
+        Die Aufgenommen Spektren werden mit Referenzspektren aus der \gls{NIST} sowie der \gls{PNNL} Datenbank abgeglichen um die Richtigkeit der Messergebnisse zu bestätigen.
+        Außerdem wird eine Messungen mit \SI{100}{ppm} Propan durchgeführt und mit älteren Messungen verglichen, um Änderungen am Messaufbau zu berücksichtigen.
+        
+    \item[Messablauf] %\hl{Festlegung des Messablaufs:}
+        % zeitliche bzw. örtliche Abfolge der Messungen: z. B. Reihenfolge von Einzelmessungen, Wiederholungen, Messreihe unter geänderten Bedingungen; räumliche Verteilung der Messpunkte (Messstellen), Messprofile, regelmäßiger Raster usw.
+        Um ein aussagekräftiges Ergebnis zu erhalten, werden Messungen unterschiedlicher Gasgemische sowie unterschiedlicher Konzentrationen aufgenommen.
+        Eine Übersicht über die aufzunehmenden Spektren ist in \cref{tab:Proben} zusammengestellt.
+        Der Ablauf einer Messung gestaltet sich wie folgt:
+        \begin{enumerate}%[label=\roman*]
+            \item In Messzelle und Zuleitungen des Messaufbaus wird ein Vakuum erzeugt um Gasrückstände der vorherigen Messung zu entfernen.
+            \item Ein Tedlar-Gasbeutel wird an eine Zuleitung des Messaufbaus angeschlossen.
+                Danach wird der Gasbeutel mit Stickstoff geflutet, bis er sich vollstängig mit dem Stickstoff gefüllt hat.
+            \item In einer gut belüfteten Umgebung wird die Probe präpariert, dazu wird die gewünschte Menge der flüssigen Kohlenwasserstoffe dem Gasbeutel zugeführt.
+                Durch eine Insulinspritze lassen sich die Flüssigkeiten direkt durch das Ventil in die Tedlar-Beutel spritzen, ohne dass ein Gasaustausch mit der Umgebung stattfindet.
+            \item Die flüssigen Kohlenwasserstoffe müssen vollständig verdampfen bevor die Probe verwendet werden kann. 
+                Dieser Vorgang kann bis zu \SI{60}{min} dauern, während dieser Zeit ist in der Messzelle das Vacuum zu halten.
+            \item Der Tedlar-Beutel wird erneut an den Messaufbau angeschlossen und das Ventil geöffnet.
+                Das Vacuum in der Zelle saugt die gasförmigen Probe an, bis die Messzelle vollständig gefüllt und Umgebungsdruck erreicht ist.
+            \item Die Messroutine zur Aufnahme des Spektrums wird vom PC aus gestartet.
+        \end{enumerate}
+        
+    \item[Durchführung] %\hl{Durchführen der Messung und Ermitteln des Messergebnisses:}
+        % Es können eine Messung oder auch mehrere unter denselben Bedingungen gewonnene Messungen derselben Größe (Vergleichs-/Wiederholmessungen) durchgeführt werden. Dann sind Mittelwert und Standardabweichung zu berechnen.
+        % Ferner können Messungen verschiedener Größen erforderlich sein, aus denen der Messwert der gesuchten Größe nach festgelegten mathematischen Beziehungen zu berechnen ist.
+        Die Zusammensetzung der Probe kann sich während der Messung leicht ändern.
+        Um diesen zeitlichen Einfluss in die Betrachtung mit einfließen zu lassen, wird eine einzelne Messung zweimal wiederholt und die so erhaltenen Spektren miteinander verglichen.
+        Ansonsten wird zu jeder Probe genau ein Spektrum aufgenommen, welches sich aus Messungen bei unterschiedlicher Wellenlänge zusammensetzt.
+        Die Schrittweite der Wellenlänge beträgt \SI{1 +- 0.1}{nm}.
+        Die Abweichungen resultieren aus der Eigenschaft des \gls{OPO}, dass er nur bei bestimmten Wellenlängen ausreichend Leistung zur Verfügung stellt.
+        Bei jeder Schrittweite werden innerhalb von sechzig Sekunden zwanzig Messwerte aufgenommen, um den Einfluss von Störgrößen zu verringern.
+    
+    \item[Einflussgrößen] %\hl{Berücksichtigung der Auswirkungen von Einflussgrößen:}
+        % Korrektur von systematischen Messabweichungen.
+        % Je nach Umständen gehört hierzu auch eine Reduktion, d. h. eine Korrektur auf einheitliche Bedingungen.
+        Zu den Einflussgrößen der durchgeführenten \gls{PAS} zählen: Temperatur- und Druckeinflüsse, Undichtigkeiten der Zelle und stochastische Fehler, verursacht durch die elektrooptische Modulation nach dem Mach Zehnder Prinzip.
+        Nach Möglichkeit erfolgt eine Reduktion, d.\,h.\ eine Korrektur auf einheitliche Bedingungen.
+        Erfolgt keine Reduktion werden die Einflussgrößen in der Messunsicherheit mit berücksichtigt.
+        % Bevor die Spektren verwendet werden können werden sie von systematischen Messabweichungen bereinigt.
+    
+    \item[Messergebnis] %\hl{Ermitteln des vollständigen Messergebnisses:}
+        % Ein vollständiges Messergebnis besteht aus dem Messwert (gegebenenfalls Mittelwert aus einer oder mehreren Messreihen oder dem berechneten Wert aufgrund anderer Messungen), ergänzt durch quantitative Aussagen zur Messunsicherheit.
+        Das Messergebnis setzt sich zusammen aus den aufgenommenen Spektren und deren darauf folgenden Auswertung.
+        Die Qualität der Messergebnisse lässt sich durch ihre Genauigkeit und Sensitivität bewerten.
+\end{description}
+
+\begin{table}
+	\centering
+	\begin{tabular}{l*{15}{c}}
+		\toprule
+         & \rotatebox{90}{Butanone} & \rotatebox{90}{1-Propanol} \rule{0pt}{1.4ex} & \rotatebox{90}{Isopren} & \rotatebox{90}{Ethylbenzol} & \rotatebox{90}{Styrol} & \rotatebox{90}{Hexanal} \rule{0pt}{1.4ex} \\
+        %  \rotatebox{90}{Propanone} &
+        %  \rotatebox{90}{2-Pentanone} &
+        %  \rotatebox{90}{2-Propanol} &
+        %  \rotatebox{90}{Decane} &
+        %  \rotatebox{90}{Benzene} &
+        %  \rotatebox{90}{Heptanal} &
+        %  \rotatebox{90}{Butane} &        
+        %  \rotatebox{90}{Propanal} &        
+        %  \rotatebox{90}{n-Pentane} \\
+
+        \midrule
+        Butanone &3&4&1&1&1&x \\
+        1-Propanol &&4&1&1&1&x \\ [1.2ex]
+        Isopren &&&3&x&1&1 \\
+        Ethylbenzol &&&&2&x&x \\
+        Styrol &&&&&1&x \\
+        Hexanal &&&&&&1 \\ [1.2ex]
+        % Propanone \\
+        % 2-Pentanone \\
+        % 2-Propanol \\
+        % Decane \\
+        % Benzene \\
+        % Heptanal \\
+        % Butane \\        
+        % Propanal \\        
+        % n-Pentane \\
+		\bottomrule
+	\end{tabular}
+	\caption{Zusammensetzungen der Proben zur Messung der photoakustischen Spektren}
+	\label{tab:Proben}
+\end{table}
+
+
+\subsection{Spektren aufbereiten} \label{Spektren aufbereiten}
+Die aufgenommenen Messwerte entsprechen nicht den Anforderungen der anzuwendenden Analyseverfahren.
+Um diesen Anforderungen zu genügen, werden die Messwerte in ein diskretes Spektrum mit konstantem Abstand $(\Delta \lambda)$ der Wellenlänge zwischen den Einzelwerten überführt.
+% Aus den aufgenommen Messwerten muss ein fachgerechtes Spektrum erzeugt werden.
+% Hierzu werden zunächst systematische Messabweichungen wie Temperatur und Druckeinflüsse korrigiert. 
+In \cref{fig:SpectrumPropan} sind die aufgenommenen \gls{PA}-Ausgangsdaten einer Messung von \SI{100}{ppm} Propan gelöst in Stickstoff dargestellt.
+Dieser Daten wurden bereits von Ausreißern und Messwerten mit zu geringer Leistung bereinigt.
+\begin{figure}[htb]
+    \centering
+    \includestandalone{figures/spectrum_propan}
+    \caption{Photoakustische Daten von Propan (\SI{100}{ppm}) in Stickstoff}
+    \label{fig:SpectrumPropan}
+\end{figure}
+
+Die Streuung der Einzelmessungen erschwert die Regression, bei der ein Verfahren aus den diskreten Messdaten ein kontinuierliches Spektrum erzeugt.
+Abbildung \ref{fig:PropanSpectra} zeigt das erzeugte, kontinuierliche Spektrum der Messung.
+Die unterbrochenen Linien entsprechen der Standardabweichung der Messwerte um deren örtlichen Mittelwert.
+Der örtliche Mittelwert entspricht dem kontinuierlichen Spektrum und wird durch eine Fensterfunktion gebildet.
+\begin{figure}[htb]
+    \centering
+    \includestandalone{figures/propanspectra}
+    \caption{Gemessenes Spektrum von Propan}
+    \label{fig:PropanSpectra}
+\end{figure}
+
+\section{Bewertung der Messergebnisse}
+In diesem Abschnitt wird die Qualität der zuvor erzeugten photoakustischen Spektren bewertet.
+Hierzu werden einzelne Fehlerquellen, die Einfluss auf die Qualität haben, betrachtet.
+Um den Fehler eines der erzeugten Spektren abzuschätzen wird als erstes die Abweichung zu einem  Referenz-Spektrum der \gls{PNNL} Datenbank berechnet.
+Dazu muss das photoakustische Signal mit einem Korrekturfaktor $f_\mathrm{ko}$ normiert werden um der Einheit des Referenz-Spektrums zu entsprechen.
+
+Zur Bestimmung des Korrekturfaktors $f_\mathrm{ko}$ wird wie in \cref{eq:referencefactor1} angegeben das Integral des Referenz Spektrums $S_\mathrm{ref}$ durch jenes des photoakustischen Spektrums $S_\mathrm{pas}$ dividiert.
+Dieses Verfahren liefert die besten Ergebnisse, wenn abgeschlossene Absorptionsbanden betrachtet werden.
+Ein numerischer Ansatz ist in \cref{eq:referencefactor2} beschrieben.
+
+\begin{subequations} 
+    \begin{align}
+        \int S_\mathrm{ref}\mathrm{d}\lambda &= f_\mathrm{ko} \cdot \int S_\mathrm{pas}\mathrm{d}\lambda \label{eq:referencefactor1} \\
+        \sum S_\mathrm{ref}(\lambda)\Delta\lambda &= f_\mathrm{ko} \cdot \sum S_\mathrm{pas}(\lambda)\Delta\lambda \label{eq:referencefactor2}
+    \end{align}
+\end{subequations}
+
+Nachdem das photoakustische Spektrum entsprechend normiert wurde, kann die Abweichung zur Referenz bestimmt werden.
+Hierzu werden die Spektren in $n$ finite Abschnitte mit fester Breite $(\Delta \lambda)$ unterteilt und die Integrale der Intervalle miteinander verglichen.
+Der Mittelwert der Differenzen bildet die Abweichung zum Referenz-Spektrum, den geschätzten mittleren Fehler.
+Die Gesamtabweichung lässt sich in zufällige und und systematische Abweichungen unterteilen.
+
+\begin{equation}
+    e = n^{-1}\sum \left| S_\mathrm{ref}(\lambda) - f_\mathrm{ko} \cdot S_\mathrm{pas}(\lambda) \right|
+\end{equation}
+
+\paragraph{Zufälliger Fehler}
+Abweichungen, die zwischen wiederholten Messungen unter gleichen Bedingungen auftreten, werden als zufällige Abweichungen bezeichnet.
+Bei einer häufig wiederholten Messung, lässt sich der Fehler durch gemittelte Messwerte und entfernte Ausreißer verringern.
+Ein solcher Fehler ist z.\,B.\ das Rauschsignal des verwendeten Mikrofons, es lässt sich durch eine weißes Rauschen nachbilden.
+
+Um den Einfluss der zufälligen Abweichungen zu verringern, werden die Messdaten durch eine Fensterfunktion gemittelt und so das Rauschen gesenkt.
+Bei diesem Vorgang wird eine systematische Abweichung dem Spektrum hinzugefügt.
+Die Größe des systematischen Fehlers hängt dabei zum einen vom Typ der gewählten Fensterfunktion und zum anderen von der gewählten Fensterbreite ab.
+Für die Mittelung der photoakustischen Messwerte wird in dieser Thesis ein Hemming Fenster verwendet, weil der systematische Fehler hier gering bleibt.
+Das Hemming Fenster wird in \cref{eq:hemming} beschrieben.
+\begin{equation} \label{eq:hemming}
+    {\displaystyle w(n)=\alpha -\beta \;\cos \left({\frac {2\pi n}{N-1}}\right),\quad n=0,\dotsc ,N-1}
+\end{equation}
+Die Parameter für $\alpha$ und $\beta$ werden dabei so gewählt, dass $\alpha + \beta = 1$, $\alpha = 0,54$ und $\beta = 0,46$ gilt.
+
+Durch die Fensterfunktion wird das Rauschen der Messergebnisse reduziert, dabei wird dem Spektrum aber eine systematische Abweichung hinzugefügt.
+Der normierte mittlere absolute Fehler $(\operatorname{nMAE})$ entspricht für \enquote{66-25-1-IR} \SI{1.76}{\percent}
+
+
+\paragraph{Signal-Rausch-Verhältnis}
+Zur abschließenden Fehlerbetrachtung sollen die theoretischen Nachweisgrenzen einzelner Proben, gemessen durch den photoakustischen Sensor, ermittelt werden.
+Die Nachweißgrenze bezeichnet die minimale Konzentration einer Probe, die durch den Sensor erfasst werden kann.
+Dabei wird das maximale Signal des Spektrums mit seiner Standartabweichung verglichen.
+Das Hintergrundrauschen kann hingegen gemittelt und als subtrahierbarer Offset aufgefasst werden.
+Es wird unter anderem durch die Absorption in den Fenstern erzeugt.
+Die berechneten Ergebnisse der \gls{SNR} und \gls{LOD} sind in \cref{tab:SNRundLOD} aufgelistet.
+Die Transformation von \gls{SNR} auf ein dekibles Niveau wurde dabei mit $\mathrm{SNR}_\mathrm{dB} = 20\, \operatorname{log}_{10}(\mathrm{SNR}_\mathrm{amp})$ erreicht.
+
+\begin{table}[htb]
+	\centering
+	\begin{tabular}{l*2{c}}
+        \toprule
+         &\glsentryshort{SNR}$\, /\, \si{\decibel}$ & \glsentryshort{LOD}$\, /\, \si{ppb}$ \\
+        \midrule
+        Butanone & \num{84.92} & \num{5.7} \\
+        1-Propanol & \num{81.56} & \num{8.4} \\ [1.2ex]
+        Isopren & \num{68.72} & \num{36.6} \\
+        Ethyl\-benzene & \num{81.32} & \num{8.6} \\
+        Styrol & \num{56.98} & \num{141.6} \\
+        Hexanal & \num{76.25} & \num{15.4} \\
+		\bottomrule
+	\end{tabular}
+	\caption{Signal Rausch Verhältnisse und Nachweisgrenzen unterschiedlicher Proben}
+	\label{tab:SNRundLOD}
+\end{table}
+
+
+\paragraph{Systematischer Fehler}
+Unter systematische Abweichung werden diejenigen Abweichungen verstanden, die durch feststellbare Ursachen bedingt sind.
+Unter gleichen Bedingungen durchgeführte Messungen weisen somit die gleichen systematischen Abweichungen auf, weshalb sie sich bei einem Vergleich dieser Messergebnisse nicht erkennen lassen.
+Zu den Systematischen Messabweichungen bei der hier durchgeführten photoakustischen Spektroskopie zählen: Emissionsbande und Schrittweite der Laserstrahlung, Konzentrationsänderungen der Probe und das Resonanzverhalten der Messzelle.
+
+
+\paragraph{Systematischer Fehler der Messzelle}
+Ein systematischer Fehler ist im Resonanzverhalten der Messzelle begründet.
+Die Resonanzfrequenz der Zelle ist abhängig von der Schallgeschwindigkeit $(c)$ der Probe, und diese ist wiederum von Druck $(p)$ und Temperatur $(T)$ abhängig.
+\begin{equation}
+    c = \sqrt{\kappa R T} = \sqrt{\kappa p\ /\ \rho\ }
+\end{equation}
+Schwankt bei einer Messung $p$ oder $T$, so verschiebt sich die Resonanzfrequenz $(f_{100} = c\,/\,(2l_C))$.
+Bei gleicher Anregung resultiert das in einem geringeren photoakustischen Signal.
+Um den Einfluss auf die Messergebnisse zu schätzen, wird in dieser Arbeit ein Ansatz gewählt, bei dem die Zelle durch einen elektrischen Ersatzschaltkreis nachgebildet wird.
+Die Simulationsergebnisse der Ersatzschaltung werden mit einer realen Messung bei gleichen Bedingungen verglichen.
+Anschließend kann der Einfluss durch Druck und Temperatur anhand weiterer Simulationen bestimmt werden.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Elektrisches Modell hier beschreiben
+%% 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\paragraph{Elektrische Ersatzschaltung}
+Der in \cref{fig:AcousticResonator} dargestellte akustische Resonator wird durch eine elektrische Ersatzschaltung nachgebildet, dieses Verfahren ist in der Akustik weit verbreitet.
+Die beiden Puffervolumen $(V_1)$ und $(V_2)$ der geschlossenen H-Zelle wirken dabei wie Kondensatoren $(C)$ und die Luft im Hals der Messzelle, wie eine Spule $(L)$.
+Die fluiddynamische und die thermische Grenzschicht an den Wänden des Halses verursachte Reibung und wirkt dabei wie eine Widerstand $(R)$.
+% Als akustischer Resonator kommt eine geschlossene H-Zelle zum einsatz.
+% Das Resonanzverhalten entspricht dem eines Masse-Feder Systems wobei die Luft in den Holräumen wie eine Feder wirkt und die Luft im Hals wie eine Masse.
+% Weit verbreitet ist die darstellung als elektrische Ersatzschaltung wobei die Luft in den Holräumen wie ein Kondensator wirkt und die Luft im Hals wie eine Spule.
+\begin{figure}
+    \centering
+    \includestandalone{figures/pas_zelle}
+    \caption{H-Zelle als akustischer Resonator}
+    \label{fig:AcousticResonator}
+\end{figure}
+Für die Modellierung der Ersatzschaltung wichtige Parameter der Zelle sind die geometrischen Größen der Zelle:
+Länge $(l_\mathrm{c})$, Durchmesser $(d_\mathrm{c})$ und Querschnittsfläche $(S_\mathrm{c})$.
+Die Parameter der verwendeten Zelle sind:
+\begin{align*}
+  l_\mathrm{c} &= \SI{62}{mm} \\
+  d_\mathrm{c} &= \SI{6}{mm} \\
+  S_\mathrm{c} &= \pi d^2 / 4 = \SI{28.2743}{mm^2} \\
+  V^{-1} &= V_1^{-1} + V_2^{-1} = \SI{6785.84}{\per\cubic\milli\meter}
+\end{align*}
+% Und zum anderen die Eigenschaften der Probe:
+% \begin{subequations}
+%   \begin{align}
+%     m &= \rho L S \\
+%     k &= \rho S^2 c^2 \cdot V^{-1} \\
+%     c &= \sqrt{\kappa p \cdot \rho^{-1}}
+%   \end{align}
+% \end{subequations}
+
+
+% \begin{figure}[htb]
+    %     \centering
+    %     \includestandalone{figures/schwingkreis}
+    %     \caption{Elektrischer parallel Resonanzkreis}
+    %     \label{fig:schwingkreis}
+% \end{figure}
+
+Im äquivalenten LC-Schaltkreismodell werden Schalldruck $(p)$ und Volumengeschwindigkeit $(u)$ durch Spannung $(V)$ bzw.\ Strom $(I)$ ersetzt \cite{tavakoli_2010}. 
+\begin{equation}
+    |V_{PA}| = |I_0| |Z|
+\end{equation}
+
+Dabei gilt die elektrische Anregung $(I_0)$ analog zur thermische Anregung $(H)$ des akustischen Modells und lässt sich durch
+\begin{equation}
+    I_0 = (\gamma - 1)\, P_L \alpha l / (\rho c^2)
+\end{equation}
+mit der Leistung des Lasers $(P)$, dem Absorptionskoeffizient $(\alpha)$ und dem Isentropenexponent $(\gamma)$ des Gases berechnen.
+Außerdem der Schallgeschwindigkeit $(c)$ bzw. der Länge des Resonators $(l_\mathrm{c})$ .
+Die Übertragungsfunktion kann durch die Impedanz
+\begin{equation}
+    Z = \frac{L / C}{R + i (\omega L - 1 /(\omega C))}
+\end{equation}
+ausgedrückt werden.
+
+Die Parameter des LC-Kreises können wie folgt definiert werden:
+\begin{subequations}
+    \begin{align}
+        L &= \rho l_\mathrm{c} / S_\mathrm{c} \\
+        C &= S_\mathrm{c} l_\mathrm{c} / (\rho c^2) \\
+        R &= \omega [(\gamma - 1)\, \delta _\kappa + \delta _\eta]\, \rho l_\mathrm{c} d_\mathrm{c} / (2 S^2)
+    \end{align}
+\end{subequations}
+
+Dabei sind $\delta _\eta$ und $\delta _\kappa$ die Dicken der viskosen bzw. thermischen Grenzschichten und $\omega$ die Betriebsfrequenz. \cite{bijnen_1996,morse_1968}
+
+\begin{subequations}
+    \begin{align}
+        \delta _\kappa &= \sqrt{2 \kappa / (c_p \rho \omega)} \\
+        \delta _\eta &= \sqrt{2 \eta / (\rho \omega)}
+    \end{align}
+\end{subequations}
+Mit der dynamischen Viskosität $(\eta)$ und der Wärmeleitfähigkeit $(\kappa)$.
+
+\begin{equation}
+    \omega _0 = 1 / \sqrt{LC}
+\end{equation}
+
+% \begin{equation}
+    %     Q = \omega _0 L / R
+% \end{equation}
+
+% \begin{equation}
+%     F = (\gamma - 1) l Q / (2\omega _0 V)
+% \end{equation}
+
+\begin{figure}[htb]
+    \centering
+    \includestandalone{figures/cellresponse}
+    \caption{Temperaturabhängigkeit der Resonanzfrequenz der photoakustischen Zelle basierend auf einer elektrischen Ersatzschaltung}
+    \label{fig:ResonanceTemperature}
+\end{figure}
+
+Die Zelltemperatur beträgt während der Messungen \SI{20\pm 2}{\celsius}, daraus ergiebt sich laut elektrischer Ersatzschaltung eine Abweichung von \SI{\sim 3}{\percent} zum erwarteten photoakustischen Signal.
+
+% \begin{equation}
+%     s_\omega = S(\omega, t, p) / \hat{S}  
+% \end{equation}
+
+
+\paragraph{Absorptionsbande und Laserprofil}
+Die Form der Absorptionsbande sowie des Laserprofils haben Einfluss auf das entstehende \gls{PA}-Signal.
+Der Einfluss wir im Folgenden analytisch bestimmt.
+% In einem weiteren Analyseschritt wurde die Genauigkeit des \gls{OPO}-basierten \gls{PAS}-Systems in Bezug auf die Detektion und Charakterisierung von ausgeprägten Absorptionslinien getestet, die es ermöglichen, Gaszusätze in Zukunft automatisch aus den erhaltenen photoakustischen Spektren mit AI-Programmen zu identifizieren und zu quantifizieren.
+\par Experimentell weisen Absorptionslinien eine typische Resonanzstruktur auf, die sich durch die Wellenlänge, die korrespondierende Amplitude und die \gls{FWHM} auszeichnet.
+Die Resonanzstruktur wird durch ein komplexes Voigt-Profil dargestellt, das eine Faltung der Gaußschen Verteilung infolge der Dopplerverbreiterung und eine Lorenzianische Verteilung aufgrund der Druckverbreiterung ist \hl{[28]}.
+% Wie im vorangegangenen Unterkapitel zu sehen ist, führte die relativ geringe Auflösung von \gls{PAS} zu einer Reihe von Artefakten bei der Identifizierung von eher scharfen Resonanzen, die durch ein kleines \gls{FWHM} gekennzeichnet sind.
+% Abbildung 6, die die Absorption um die Resonanzabsorptionslinie von Propan herum darstellt, verdeutlicht einige zusätzliche generische Probleme, die auch in der Interoretation von vollständig aufgelösten Resonanzen berücksichtigt werden müssen.
+
+\par Das photoakustisch gemessene Maximum einer Absorptionsbande liegt bei einer bestimmten Wellenlänge, welche nicht genau mit dem Maximum der hochauflösenden Referenzspektren übereinstimmt.
+Infolgedessen erreicht beispielsweise die maximale Amplitude einer Messung von Propan nur \SI{94}{\%} des theoretischen Maximalwertes.
+Darüber hinaus ist die individuelle Wellenlänge nicht gleichmäßig zwischen niedriger und höherer Wellenlänge um die maximale Amplitude herum verteilt.
+Daher weicht jede Anpassung an die Amplitudenposition bis zu einem gewissen Grad von den \gls{FTIR}-Referenzdaten ab und es können systematische Abweichungen bei der mathematischen Auswertung von Resonanzwellenlänge, Resonanzamplitude und dem damit verbundenen \gls{FWHM} auftreten.
+% In dem Beispiel ist zu sehen, dass die tatsächliche Passform zu einem etwas kleineren \gls{FWHM} der Resonanz führt, da der Peak durch die Verteilung der gewählten Wellenlänge kleiner erscheint.
+% Natürlich kann eine zu große Schrittweite in \gls{PAS} auch zu künstlich vergrößerten \gls{FWHM}-Fit-Werten führen, insbesondere bei teilaufgelösten, verkürzten Resonanzen.
+Um den Rechenaufwand zur Bestimmung des Voigt-Profil zu verringern, wird in dieser Betrachtung eine Pseudo-Voigt Funktion $(V_\mathrm{p})$ verwendet, bei der die komplexe integrale Faltung durch eine lineare Kombination aus einem lorenzianischen $(L)$ und einem gaußschen $(G)$ Profil ersetzt wird.
+
+% \begin{subequations}
+%     \begin{align}
+%         V(\lambda;\sigma,\gamma) &= (G * L)(\lambda;\sigma,\gamma) = \int G(\tau;\sigma) L(\lambda - \tau;\gamma) \mathrm{d}\tau \\
+%         G(\lambda;\sigma) &= \left. e^{-\lambda^2 \left(2 \sigma ^2\right)} \right/ \left(\sigma \sqrt{2 \pi}\right) \\
+%         L(\lambda;\gamma) &= \gamma  \left/ \left(\pi \left(\lambda^2 + \gamma ^2\right)\right) \right.
+%     \end{align}
+% \end{subequations}
+\begin{equation}
+    V_\mathrm{p}(\lambda;\lambda_0,\omega) = \eta \cdot L(\lambda;\lambda_0,\omega) + (1 - \eta) \cdot G(\lambda;\lambda_0,\omega)
+\end{equation}
+
+\begin{subequations}
+    \begin{align}
+        G(\lambda;\lambda_0,\omega) &= \exp {\left(-\ln(2) \cdot \left({\frac {\lambda-\lambda_{0}}{w}}\right)^{2}\right)} \\
+        L(\lambda;\lambda_0,\omega) &= \left(1+\left(\frac {\lambda-\lambda_0}{w}\right)^2 \right)^{-1}
+    \end{align}
+\end{subequations}
+
+Um das Profil des Lasers zu charakterisieren wir ein Pseude-Voigt Profil so an reale Messdaten des verwendeten Spektrometers angepasst, dass die Abweichung zwischen analytischem und tatsächlichem Profil minimal ist.
+In \cref{fig:VoigtProfil} ist das Ergebnis der Anpassung an die Messwerte dargestellt.
+\begin{figure}[htb]
+    \centering
+    \includestandalone{figures/voigtlaser}
+    \caption{Spektrum der Strahlungsquelle und approximation durch Voigt Profil}
+    \label{fig:VoigtProfil}
+\end{figure}
+
+Das nachgebildete Laserprofil lässt sich durch folgende Parameter  beschreiben:
+\begin{subequations}
+    \begin{align*}
+        I_0 &= \SI{19.302}{AU} \\
+        \lambda_0 &= \SI{3.389}{\micro\meter} \\
+        \omega &= \SI{0.770}{\micro\meter} \\
+        \eta &= \num{3.025e-02}
+    \end{align*}
+\end{subequations}
+
+\gls{FWHM} $d_\mathrm{FWHM} = 2 \cdot \omega \approx \SI{0.14}{nm}$
+
+Um die Abweichung zwischen dem aufgenommenen Signal und dem tatsächlichem Spektrum zu bestimmen, wird eine Faltung zwischen einem Referenzspektrum $(S_\mathrm{ref})$ und dem zuvor ermitteltem Voigt-Profil $(V_\mathrm{p})$ vorgenommen.
+\begin{equation}
+    S' = V_\mathrm{p} * S_\mathrm{ref}
+\end{equation}
+Das Ergebnis der Faltung $S'$ wird anschließend so skaliert, dass das Integral des entstehenden Spektrums mit dem des Referenzspektrums übereinstimmt.
+\begin{equation}
+    S =  S' \cdot \bar{S}_\mathrm{ref}\,/\,\bar{S}'
+\end{equation}
+Der normierte mittlere absolute Fehler $(\operatorname{nMAE})$ entspricht für Hexanal (66-25-1-IR) \SI{0.57}{\percent}.
+Im Verhältnis zu den zuvor betrachteten Fehlern ist dieser vernachlässigbar klein. 
+
+
+\paragraph{Einfluss durch Absorption}
+Unter der Annahme, dass das photoakustische Signal proportional zur Anregung an der Mikrofonposition ist $(S_\mathrm{PA} \propto I_\mathrm{Mic})$, lässt sich nach dem Lambert-Beer Gesetz, \cref{eq:lambert_beer}, die Minderung des photoakustischen Signals an der Stelle des Mikrofons bestimmen.
+Bei einer Absorption $\varepsilon < \SI{3}{\percent}$ entspricht die Abweichung des photoakustischen Signals $S_\mathrm{PA} < \SI{1.5}{\percent}$.
+
+\section{Multivariate Analysemethoden} \label{sec:MVA2}
+Wie in Kapitel xx beschrieben, dienen die multivariaten Analysemethoden in der multivariaten Statistik der Untersuchung mehrerer Variablen zugleich.
+Die $n$ verwendeten Spektren bei $m$ gemessenen Wellenlängen werden für die folgende Betrachtung zu einer Datenmatrix $\mat{X}$ vom Typ $(n,m)$ zusammengefasst.
+Aus den aufgenommen Spektren sollen die Konzentrationen der Bestandteile eines Gasgemisches mehrerer \gls{VOC}s bestimmt werden.
+Diese Einzelkonzentrationen werden als Ergebnismatrix bezeichnet.
+Die Faktorenanalyse, die Hauptkomponentenanalyse und die Korrespondenzanalyse dienen zur Reduktion vieler Variablen auf wenige latente Konstrukte.
+
+\hl{Die multivariate Datenanalyse ist ein wichtiges Werkzeug der Chemometrie.
+Spektren aus dem Nahinfrarotspektroskopie sind beispielsweise nur durch sie auswertbar.
+Mit chemometrischen Methoden ein Maximum an chemischen Informationen aus experimentellen Messdaten extrahiert werden.}
+
+
+\subsection{Lineare Regression}
+Die einfache lineare Regression wird nicht für die multivariate Auswertung der Spektren verwendet, sie dient hier jedoch als einleitendes Beispiel in die Regressionsanalyse.
+Des Weiteren werden anhand der einfachen linearen Regression Größen zur Bewertung der Regressionsgleichung, wie  der \gls{MSE} eingeführt.
+
+Gegeben ist ein Datensatz mit Wertepaaren, bestehend aus der Zielgröße $(y)$ und einer Einflussgröße $(x)$.
+Ziel der einfachen linearen Regression ist es die Parameter $a$ und $b$ der linearen Regressionsgleichung
+\begin{equation}\label{eq:linearreg}
+    f(x) = a +xb
+\end{equation}
+mit der minimalen Abweichung zwischen Vorhersage $(\hat{y} = f(x))$ und Zielgröße $(y)$ zu bestimmen.
+Dabei gilt,
+\begin{subequations}
+    \begin{align}
+        b &= \frac{\sum_{i=1}^n (x_i – \bar{x}) \cdot (y_i – \bar{y})}{\sum_{i=1}^n (x_i – \bar{x})^2}\\
+        a &= \bar{y} – b\cdot \bar{x}
+    \end{align}
+\end{subequations}
+mit $\bar{x}$ und $\bar{y}$ den Mittelwerten aller $x_i$ beziehungsweise $y_i$.
+
+Um den Fehler, der Regression zu bewerten wird der sogernannte \gls{MSE} verwendet, er lässt sich wie folgt berechnen.
+\begin{equation}
+    \operatorname{MSE} = \frac{1}{n} \sum _{i=1}^n \left(y_{i}-\hat{y}_i\right)^2
+\end{equation}
+Grafisch dargestellt ist die lineare Regression mit den quadratischen Abweichungen der Einzelwerte in Abbildung \ref{fig:linearregression}.
+\begin{figure} [htb]
+    \centering
+    \includestandalone{figures/linearregression}
+    \caption{Lineare Regressionsgerade $f(x)$ und Mittlerer Quadratischer Fehler (MSE) der Zielgröße $y$ in Abhängigkeit zur Einflussgrüße $x$}
+    \label{fig:linearregression}
+\end{figure}
+
+\subsection{Multiple lineare Regression}
+Im Gegensatz zur zuvor behandelten einfachen linearen Regression ist die Zielgröße $y$ der multiplen linearen Regression von mehreren Einflussgrößen $x​$ abhängig.
+Aus Gleichung \ref{eq:linearreg} wird so
+\begin{equation}
+    y = a + \sum_{i=1}^n b_i x_i
+\end{equation}
+mit $n$ unterschiedlichen Einflussgrößen.
+
+In vektorieller Schreibweise wird die multiple lineare Regression durch
+\begin{subequations}
+  \begin{align}
+    \mat{y} &= \mat{X} \mat{b} + \boldsymbol{\varepsilon} \\
+    \hat{\mat{y}} &= \mat{X} \mat{b}
+  \end{align}
+\end{subequations}
+ausgedrückt.
+Dabei handelt es sich um den Ergebnisvektor $\mat{y}$ mit den Zielgrößen $y$, die Datenmatrix $\mat{X}$ mit den Einflussgrößen $x$, den Parametervektor $\mat{b}$ mit den Regressionsparametern $b$.
+Bei dem Fehler $\boldsymbol{\varepsilon} = \mat{y} - \hat{\mat{y}}$ handelt es sich ebenfalls um eine Vektorielle Größe, sie gibt die Abweichung zwischen wahrer Zielgröße $\mat{y}$ und geschätzter Zielgröße $\hat{\mat{y}}$ an.
+
+Der Parametervektor $\mat{b}$ lässt sich wie folgt ermitteln. \hl{a.k.a. Ordinary Least Squares (OLS)}
+\begin{equation}
+  \mat{b} =(\mat{X}^\mathsf{T}\mat{X} )^{-1}\mat{X}^\mathsf{T}\mat{y}
+\end{equation}
+
+\subsection{Principal Component Regression}
+Bei einer Datenmatrix mit einem hohen Maß an Korrelation zwischen den einzelnen Einflussgrößen, können schon kleine Änderungen einzelner Einflussgrößen (zum Beispiel durch Rauschen) das Ergebnis verfälschen.
+Aus diesem Grund wird bei linear abhängigen Einflussgrößen die \gls{PCR} bevorzugt.
+Sie ist ein auf der Hauptkomponentenanalyse aufbauendes Regressionsverfahren.
+
+\subsubsection{Hauptkomponentenanalyse}
+Die PCA ist ein Verfahren der multivariaten Statistik, welches dazu dient, eine Vielzahl statistischer Variablen durch eine geringere Zahl möglichst aussagekräftiger Linearkombinationen (den „Hauptkomponenten“) zu beschreiben.
+Das Ergebnis ist ein strukturiertere und vereinfachte Form des Datensatzes.
+
+\begin{equation}
+  \mat{X} = \mat{TP}^\mathsf{T} + \mat{E}
+\end{equation}
+
+\begin{equation*}
+    \mat{T} = \mathrm{Scores}(\mat{X}) \qquad \mat{P} = \mathrm{Loadings}(\mat{X}) \qquad \mat{E} = \mathrm{Residuals}(\mat{X})
+\end{equation*}
+
+\paragraph{Berechnung mit NIPALS}
+Berechnung mit NIPALS Algorithmus \cite{kessler_2008}
+
+% \begin{table} [htb]
+%   \centering
+%   \begin{tabularx}{\textwidth}{rlX}
+%     \toprule
+%     Schritt & Mat. Ausdruck & Beschreibung \\
+%     \midrule
+%     \textbf{i.} & $E_{(0)} \leftarrow \mat{X} \qquad$ & Die Residuen $\mat{E}$ für die nullte \gls{PC} ($\mathrm{PC}_0$) der mittenzentrierten Datenmatrix $\mat{X}$ \\
+%     \textbf{ii.} & $t \leftarrow x_i \qquad$ & Einen Spaltenvektor $x_i$ der Matrix $\mat{X}$ auswählen und in den Vektor $t$ kopieren \\
+%     \textbf{iii.} & $p \leftarrow (\mat{X}^\mathsf{T} t) \cdot (t^\mathsf{T} t)^{-1} \qquad$ & Die Matrix $\mat{X}$ auf $t$ projizieren, um die korrespondierenden Loadings $p$ zu finden. \\
+%     \textbf{iv.} & $p \leftarrow p \cdot \left( \sqrt{p^\mathsf{T} p}\right) ^{-1} \qquad$ & Normiere den Loading Vector $p$ auf den Betrag eins. \\
+%     \textbf{v.} & $t \leftarrow \mat{E}_{(i-1)}p \cdot (p^\mathsf{T} p)^{-1} \qquad$ & Projeziere $\mat{X}$ auf $p$ um den Score Vektor $t$ zu finden \\
+%     \textbf{vi.} & $\tau = t^\mathsf{T} t \qquad$ & Wenn die Differenz zum Vorherigen Schritt $\Delta \tau$ größer als die Schwellwert (z.B.\ \num{d-6}) ist, widerhole Schritte \textbf{ii} bis \textbf{vi}. \\
+%     \textbf{vii.} & $\mat{E}_{(i)} \leftarrow \mat{E}_{(i-1)} - tp^\mathsf{T}$ & Entferne die geschätzte \gls{PC} von $E_{(i-1)}$ \\
+%     \textbf{viii.} & $i++ \qquad$ & Beginne von Schritt \textbf{ii}. \\
+%     \bottomrule
+%   \end{tabularx}
+%   \caption{Berechnung mit NIPLAS Algorithmus \cite{kessler_2008}}
+%   \label{tab:Niplas}
+% \end{table}
+
+\begin{enumerate}
+    \item Die Residuen $\mat{E}$ für die nullte \gls{PC} ($\mathrm{PC}_0$) der mittenzentrierten Datenmatrix $\mat{X}$
+        $$\mat{E}_{(0)} \leftarrow \mat{X}$$
+    \item Einen Spaltenvektor $x_i$ der Matrix $\mat{X}$ auswählen und in den Vektor $\mat{t}$ kopieren
+        $$\mat{t} \leftarrow \mat{x}_i$$
+    \item Die Matrix $\mat{X}$ auf $\mat{t}$ projizieren, um die korrespondierenden Loadings $\mat{p}$ zu finden.
+        $$\mat{p} \leftarrow (\mat{X}^\mathsf{T} \mat{t}) \cdot (\mat{t}^\mathsf{T} \mat{t})^{-1}$$
+    \item Normiere den Loading Vector $p$ auf den Betrag eins.
+        $$\mat{p} \leftarrow \mat{p} \cdot \left( \sqrt{\mat{p}^\mathsf{T} \mat{p}}\right) ^{-1}$$ 
+    \item Projeziere $\mat{X}$ auf $\mat{p}$ um den Score Vektor $\mat{t}$ zu finden
+        $$\mat{t} \leftarrow \mat{E}_{(i-1)}\mat{p} \cdot (\mat{p}^\mathsf{T} \mat{p})^{-1}$$ 
+    \item Wenn die Differenz zum Vorherigen Schritt $\Delta \tau$ größer als die Schwellwert (z.B.\ \num{d-6}) ist, widerhole Schritte II bis VI.
+        $$\tau = \mat{t}^\mathsf{T} \mat{t}$$ 
+    \item Entferne die geschätzte \gls{PC} von $\mat{E}_{(i-1)}$
+        $$\mat{E}_{(i)} \leftarrow \mat{E}_{(i-1)} - \mat{t}\mat{p}^\mathsf{T}$$ 
+    \item Beginne von Schritt II.
+        $$i++$$
+\end{enumerate}
+
+
+% \begin{table} [htb]
+%     \centering
+%     \begin{tabularx}{\textwidth}{rp{4.5cm}X}
+%       \toprule
+%       Schritt & Mat. Ausdruck & Beschreibung \\
+%       \midrule
+%       \textbf{i.} & $a = 1$ \newline $X_a~=~X$, $Y_a~=~Y$ \newline $u_a = max|Y_i|$ & Die Residuen $\mat{E}$ für die nullte \gls{PC} ($\mathrm{PC}_0$) der mittenzentrierten Datenmatrix $\mat{X}$ \\
+%       \textbf{ii.} & $w_a = X^\mathsf{T} u_a \cdot ||X^\mathsf{T} u_a||^{-1}$ & dfdf\\
+%       \textbf{iii.} & $t_a = X w_a$ & \\
+%       \textbf{iv.} & $p_a = X_a^\mathsf{T} t_a \cdot ||t_a^\mathsf{T} t_a||$ & \\
+%       \textbf{v.} & $q_a = u_a^\mathsf{T} t_a \cdot ||u_a^\mathsf{T} t_a||$ & \\
+%       \textbf{vi.} & $u_a = Y q_a$ & \\
+%       \textbf{vii.} & $X_{a+1} = X_a - t_a p_a^\mathsf{T}$,\newline $Y_{a+1} = Y_a - t_a q_a^\mathsf{T}$ &\\
+%       \textbf{viii.} & $a++$ & \\
+%       \textbf{ix.} & $E = X_{amax+1}$ \newline $F = Y_{amax+1}$ & \\
+
+%       \bottomrule
+%     \end{tabularx}
+%     \caption{PLS 2 Algorithmus \cite{kessler_2008}}
+%     \label{tab:Niplas}
+%   \end{table}
+
+
+
+\subsection{Partial least squares regression (PLS-Regression)}
+Entwickelt wurde die \gls{PLS} und das zugehörige iterative Lösungsverfahren  \gls{NIPALS} von H.~\uppercase{Wold} und 1974 in der Fachzeitschrift \enquote{Europien Economic Review} veröffentlicht [ref].
+5 Jahre später wurden in Zusammenarbeit mit R.~W.~\uppercase{Gerlach} und B.~R.~\uppercase{Kowalski} die erste Veröffentlichung zur Anwendung der \gls{PLS} in der Chemometrie publiziert [ref].
+Seither hat sich die \gls{PLS} zum Standart in der Auswertung von Spektren in dem wichtigen Nahinfrarotbereich entwickelt.
+Eine gute Zusammenfassung über den historischen Hintergrund die Funktionsweise der PLS ist in \enquote{notes on the history and nature of partial least squares (PLS) modelling} \cite{geladi_1988} zu finden.
+\begin{figure}[htb]
+    \centering
+    \includestandalone{figures/PLS}
+    \caption{Schematische Darstellung der PLS und der beteiligten Matrizen, nach \cite{kessler_2008}}
+    \label{fig:PLS}
+\end{figure}
+
+\paragraph{Nummerische PLS}
+In diesem Abschnitt wird veranschaulicht, wie mit Hilfe der PLS-Technik X-Scores erhalten werden, die dann in der Regression verwendet werden.
+\marginpar{\color{black} Kein Beispiel, sonder Umsetzung} \hl{Die Daten, die für dieses numerische Beispiel verwendet wurden, sind die gleichen wie für das letzte numerische Beispiel von PCA.
+Die Zielvariable und alle im letzten numerischen Beispiel verwendeten prädiktiven Variablen werden auch in diesem numerischen Beispiel verwendet.}
+
+\begin{subequations}
+    \begin{align}
+        \mat{X} &= \mat{TP}^\mathsf{T} + \mat{E} \\
+        \mat{Y} &= \mat{UQ}^\mathsf{T} + \mat{F}
+    \end{align}
+\end{subequations}
+
+\begin{alignat*}{3}
+    \mat{T} &= \mathrm{Scores}(\mat{X}) &\qquad \mat{P} &= \mathrm{Loadings}(\mat{X}) &\qquad \mat{E} &= \mathrm{Residuals}(\mat{X}) \\
+    \mat{U} &= \mathrm{Scores}(\mat{Y}) &\qquad \mat{Q} &= \mathrm{Loadings}(\mat{Y}) &\qquad \mat{F} &= \mathrm{Residuals}(\mat{Y})
+\end{alignat*}
+
+Die Zerlegung wird abgeschlossen, sodass die Kovarianz zwischen $\mat{T}$ und $\mat{U}$ maximiert wird.
+\marginpar{Bedeutung} Der \gls{PLS}-Algorithmus arbeitet unabhängig davon, ob $\mat{Y}$ eine Einzelantwort oder eine Mehrfachreaktion ist.
+
+Beachten Sie, dass der \gls{PLS}-Algorithmus $\mat{Y}$ unter Verwendung der extrahierten $\mat{Y}$-Scores ($\mat{U}$) automatisch voraussagt.
+Hier ist die Zielsetzung jedoch nur, die $\mat{X}$-Scores ($\mat{T}$) aus der \gls{PLS}-Zerlegung zu erhalten und sie separat für eine Regression zur Vorhersage von $\mat{Y}$ zu verwenden.
+Dies bietet die Flexibilität, mittels \gls{PLS} orthogonale Faktoren aus $\mat{X}$ zu extrahieren ohne dabei auf das ursprüngliche Modell der \gls{PLS} beschränkt zu sein.
+
+\subsubsection{Berechnung der PLS Komponenten}
+PLS 2 Algorithmus \cite{kessler_2008}
+Bei der Berechnung der Hauptkomponenten innerhalb der \gls{PLS} werden Informationen zwischen der $\mat{X}$ und der $\mat{Y}$ Seite ausgetauscht.
+Zusammengefasst lässt sich die \gls{PLS} wie folgt beschreiben: Durch die \gls{PCA} werden die Scores $\mat{T}_\mat{X}$ und die Loadings $\mat{P}_\mat{X}$ berechnet.
+Bei der \gls{PLS} wird die Verbindung zwischen $\mat{X}$ und $\mat{Y}$, durch einen Zwischenschritt bei der \gls{PCA} mit berücksichtigt, dabei wird die $\mat{W}$-Matrix berechnet.
+
+Für die $\mat{Y}$ Daten wird ebenfalls eine \gls{PCA} durchgeführt, daraus ergeben sich die Scores $\mat{U}_\mat{Y}$ und die Loadings $\mat{Q}_\mat{Y}$.
+In die Berechnung der \gls{PCA} von $\mat{Y}$ fließen die Ergebnisse der Scores von $\mat{X}$ mit ein.
+
+Die \gls{PLS} kann sowohl bei einer Zielgröße, als auch bei mehreren Zielgrößen angewendet werden.
+Bei nur einer Zielgröße wird von der \gls{PLS}1 gesprochen, bei mehreren von der \gls{PLS}2.
+Da es sich bei der \gls{PLS}1 um einen Sonderfall der \gls{PLS}2, bei dem nur die erste Iteration des Algorithmus durchgeführt wird, soll hier nur das Verfahren zur Lösung der \gls{PLS}2 genauscher beschrieben werden.
+\begin{enumerate}
+    \item Begonnen wird mit der Initialisierung des Index $a$.
+        Die Datenmatrix $\mat{X}$ sowie die Matrix der Zielgrößen $\mat{Y}$ liegen in mittenzentrierter Form vor.
+        %Die Residuen $\mat{E}$ für die nullte \gls{PC} ($\mathrm{PC}_0$) der mittenzentrierten Datenmatrix $\mat{X}$
+        $$a = 1 \qquad \mat{X}_a = \mat{X} \qquad \mat{Y}_a = \mat{Y} \qquad \mat{u}_a = \operatorname{max}|\mat{Y}_i|$$
+    \item Die Gewichteten Loadings $\mat{w}_a$ für $\mat{X}_a$ werden über das \gls{LS} Verfahren aus $\mat{X}_a = \mat{U}_a \mat{w}_a^\mathsf{T} + \mat{E}$ bestimmt.
+        Die Lösung Lautet:
+        $$\mat{w}_a = \mat{X}_a^\mathsf{T} \mat{u}_a \cdot ||\mat{X}_a^\mathsf{T} \mat{u}_a||^{-1}$$
+    \item Es folgt die Bestimmung Scores $\mat{t}_a$ aus $\mat{X}_a = \mat{t}_a \mat{w}_a^\mathsf{T} + \mat{E}$ mit der \gls{LS}-Lösung:
+        $$\mat{t}_a = \mat{X}_a \mat{w}_a$$
+    \item Zu den Scores $\mat{t}_a$ werden die Loadings $\mat{p}_a$ berechnet. Die \gls{LS}-Lösung für $\mat{X}_a = \mat{t}_a \mat{p}_a^\mathsf{T} + \mat{E}$ lautet:
+        $$\mat{p}_a = \mat{X}_a^\mathsf{T} \mat{t}_a \cdot ||\mat{t}_a^\mathsf{T} \mat{t}_a||^{-1}$$
+    \item Nachdem die Scores und Loadings der X Seite berechnet wurde nfolgt nun die Y Seite.
+        Hierbei fließen Informationen der X Seite über die Scores t mit in die Berechnung ein.
+        Die \gls{LS}-Lösung von $\mat{Y}_a = \mat{t}_a \mat{q}_a + \mat{F}$ lautet:
+        $$\mat{q}_a = \mat{u}_a^\mathsf{T} \mat{t}_a \cdot ||\mat{t}_a^\mathsf{T} \mat{t}_a||^{-1}$$
+    \item Nachdem alle erforderlichen Scores und Loadings ermittelt wurden, wird überprüft ob das Konvergenzkriterium (meist $\Delta \mat{t}_a < \num{e-6}$) erfüllt ist.
+        $\Delta \mat{t}_a$ ist dabei die differenz zur vorherigen Iteration.
+        Wenn das Konvergenzkriterium nicht erfüllt wurde müssen die u-Scores angepasst werden.
+        Die \gls{LS}-Lösung von $\mat{Y}_a = \mat{u}_a \mat{q}_a^\mathsf{T} + \mat{F}$ lautet: 
+        $$\mat{u}_a = \mat{Y} \mat{q}_a$$
+    \item Der neue $\mat{u}_a$ Vektor ersetzt nun den alten schätzwert und die Berechnung wird von Schritt ii.\ fortgesetzt.
+    \item Ist die Konvergenz erreicht, so werden die Informationen der ermittelten \gls{PLS}-Komponente von den $\mat{X}$ sowie den $\mat{Y}$ Daten entfernt.
+        $$\mat{X}_{a+1} = \mat{X}_a - \mat{t}_a \mat{p}_a^\mathsf{T} \qquad \mat{Y}_{a+1} = \mat{Y}_a - \mat{t}_a \mat{q}_a^\mathsf{T}$$
+    \item Um die nächste PLS-Komponente zu Berechnen, wird der Index um 1 erhöht, danach werden alle Schritte von Schritt ii.\ an wiederholt, bis $A_\mathrm{max}$ erreicht ist ($a = 1 \ldots A_\mathrm{max}$).
+        $$a++$$
+    \item Die Restvarianz befinden sich in $\mat{X}_{amax+1}$ und in $\mat{Y}_{amax+1}$, sie wird in $\mat{E}$ und $\mat{F}$ übertragen.
+        $$\mat{E} = \mat{X}_{amax+1} \qquad \mat{F} = \mat{Y}_{amax+1}$$
+    \item Die Regressionskoeffizientenmatrix $\mat{B}$ kann schlussendlich aus den ermittelten Loadings $\mat{W}$, $\mat{P}$ und $\mat{Q}$ berechnet werden.
+        \begin{equation}
+            \mat{B} = \mat{W}\left(\mat{P}^\mathsf{T} \mat{W}\right)^{-1} \mat{Q}^\mathsf{T}
+        \end{equation}
+\end{enumerate}
+\begin{equation}
+    y_{ik} = b_0 + \mat{x}_i^\mathsf{T} \mat{b}_k
+\end{equation}
+mit 
+\begin{equation}
+    b_0 = \bar{\mat{y}}^\mathsf{T} - \bar{\mat{x}}^\mathsf{T} \mat{B}
+\end{equation}
+%\subsection{Biomarker Konzentationen aus Spektren}
+%\subsection{Diagnose durch Biomarker Konzentationen}
+
+\subsection{Canonical Correlation Analysis}
+
+In der Statistik ist die kanonische Korrelationsanalyse (\gls{CCA}, auch "Kanonische Variationsanalyse" genannt) eine Möglichkeit, Informationen aus Kreuzkovarianzmatrizen abzuleiten.
+Wenn zwei Vektoren $\mat{x} = (x_1, \ldots x_n)$ und $\mat{y} = (y_1, \ldots y_m)$ zufälliger Variablen vorhanden sind und es Korrelationen zwischen den Variablen gibt, dann findet die kanonisch-korrelationale Analyse Linearkombinationen von $\mat{x}$ und $\mat{y}$, die eine maximale Korrelation zueinander aufweisen.

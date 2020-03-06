@@ -1,0 +1,262 @@
+% !TEX root = ../thesis.tex
+\section{Anwendung der multivariaten Analyseverfahren}
+% \paragraph{Ergebnisse:} Dieses Kapitel dient dazu, Deine Forschungsergebnisse zu präsentieren.
+In diesem Kapitel werden die Vorhersagemodelle der unterschiedlichen multivariaten Analysemethoden hinsichtlich ihrer Genauigkeit miteinander verglichen.
+Weil der Datensatz an realen Messungen vergleichsweise gering ist, werden die Modelle mit künstlich erzeugten Daten validiert.
+
+Die Validierung der Modelle wird anhand von zwei unterschiedlichen Datensätzen vorgenommen:
+\begin{description}
+  \item[Referenzdaten] (\emph{ideale Spektren}) \newline 
+    Die Datenmatrix $(\mat{X})$ setzt sich aus Spektren von Stoffgemischen zusammen, welche mathematisch durch Addition der Spektren der einzelnen Komponenten erzeugt werden.
+    Um den Algorithmen eine ausreichend große Anzahl an Trainingsdaten zur Verfügung zu stellen, werden insgesamt 1000 Spektren von Stoffgemischen mit zufälligen Konzentrationen ($\num{0} - \SI{100}{ppm}$) erstellt.
+    Bei diesem Verfahren fließen keine Störeinflüsse in die Ausgangsdaten ein.
+  \item[Referenzdaten zuzüglich eines Rauschens]{\ } \newline 
+    Ausgangslage ist die Datenmatrix der Referenzspektren, welche zuvor beschrieben wurde.
+    Das Rauschen setzt sich aus einem relativen und einem absoluten Anteil zusammen.
+    Dabei ist sowohl der relative als auch der absolute Fehler normalverteilt.
+    Für die Standardabweichung des relativen Fehlers wird $$\boldsymbol{s}_\mathrm{rel}^2 = 0.1\, \mat{X}$$ gewählt und für die Standardabweichung des absoluten Fehlers wird $$\boldsymbol{s}_\mathrm{abs}^2 = 0.01\, \bar{\mat{X}}$$ gewählt. 
+  % \item[Reale Spektren]{\ } \newline
+  % Die Datenmatrix setzt sich zusammen aus gemessenen Spektren.
+\end{description}
+
+\paragraph{} Für die Validierung der Modelle durch die synthetischen Referenzdatensätze mit und ohne Rauschen, wird der verwendete Datensatz in einen Trainings- (\SI{70}{\percent}) und einen Validierungsdatensatz (\SI{30}{\percent}) unterteilt.
+Wichtig ist, dass beim Anlernen der Modelle keine Informationen aus dem Validierungsdatensatz in das Modell einfließen.
+
+Für den Datensatz mit Rauschanteil werden die Modelle zusätzlich mit einem Kreuzvalidierungsverfahren auf Konsistenz der Ergebnisse geprüft.
+Dabei werden die Modelle mit unterschiedlichen Daten aus dem Gesamtdatensatz angelernt und die berechneten Regressionsparameter miteinander verglichen.
+Die Abweichungen zwischen den Parametern geben zum einen Aufschluss darüber, wie abhängig die Modelle von den Trainingsdaten sind (\emph{wie stabil die Modelle sind}) und zum anderen, ob sich der gesamte Datensatz homogen zusammensetzt (\emph{Voraussetzung um Aussagen über die Ergebnisse treffen zu können}). 
+
+% \subsection{Validierung durch Referenzdaten}
+% Im ersten Schritt, werden die Modelle der unterschiedlichen Analyseverfahren mit idealen Daten angelernt.
+% Ideale Daten bedeutet: 
+
+% Die angelernten Modelle werden anschließend mit ebenfalls mathematisch erzeugten Spektren validiert.
+% Verfahren, die hier einen hohen Fehler aufweisen, eignen sich nicht für den hier betrachteten Anwendungsfall.
+
+
+% Von diesen \num{1000} Spektren werden \num{700} zum Trainieren und \num{300} zum Validieren verwendet.
+% Es ist entscheidend, dass die Modelle nicht mit den Daten zur Validierung angelernt werden, nur so können realistische Ergebnisse erzielt werden.
+
+
+
+\subsection{Multiple lineare Regression}
+Das erste Verfahren, welches validiert wird, ist die multiple lineare Regression.
+Bei idealen synthetischen Referenzdaten weist die \gls{MLR} einen \gls{nMAE} von 
+\begin{equation*}
+  \operatorname{nMAE} = \num{1.100853081067291e-15}
+\end{equation*}
+auf.
+Dieser Wert ist sehr gering, was bedeutet, dass sich das Verfahren prinzipiell für die multivariate Analyse der Spektren eignet.
+Jetzt wird dem Datensatz $\mat{X}$ ein Rauschen hinzugefügt und die Validierung erneut durchgeführt
+\begin{align*}
+  \operatorname{nMAE}_\mathrm{Rauschen} &= \num{0.1442}, \\
+  \operatorname{Genauigkeit} &= \num{0.8849 \pm 0.0252}.
+\end{align*}
+
+Die Abweichungen zwischen tatsächlicher und geschätzter Konzentration der Probe sind im Boxplot in \cref{fig:MLRerror} dargestellt.
+\begin{figure} [htb]
+  \centering
+  \includestandalone{figures/evaluation/MLR}
+  \caption{Normierte Fehler der MLR.}
+  \label{fig:MLRerror}
+\end{figure}
+
+\subsection{Random Forest}
+Das Random Forest Verfahren kann für Klassifikations- und Regressionsaufgaben genutzt werden.
+Hier wird das Verfahren für die multivariate Regression genutzt.
+Wird der implementierte Algorithmus für die Regression verwendet, so ergibt sich schon bei den idealen Referenzdaten eine Abweichung von
+\begin{equation*}
+  \operatorname{nMAE} = \num{0.22017361825414053}.
+\end{equation*}
+Dieser Wert ist für die Validierung anhand von Referenzdaten deutlich zu hoch.
+Wird den Referenzdaten noch das Rauschen hizugefügt, liegt die Abweichung bei
+\begin{align*}
+  \operatorname{nMAE}_\mathrm{Rauschen} &= \num{0.2904}, \\
+  \operatorname{Genauigkeit} &= \num{0.6196 \pm 0.0232}.
+\end{align*}
+Auch das Ergebnis der Kreuzvalidierung ist mit $0.6196 << 1$ zu niedrig.
+
+\paragraph{} Wird der \gls{RF} Algorithmus verwendet, um die Anzahl an möglichen erklärenden Variablen zu reduzieren, so ergibt sich ein anderes Bild.
+Nach einer Reduzierung der Variablen auf die wichtigsten \SI{70}{\percent}, sinkt die Abweichung der anschließenden linearen Regression auf
+\begin{equation*}
+  \operatorname{nMAE} = \num{9.07629342929294e-16}.
+\end{equation*}
+Dieser Wert deutet bereits darauf hin, dass keine wichtigen Variablen entfernt wurden.
+Bei der Validierung durch die Referenzdaten mit zusätzlichem Rauschen steigt die Abweichung auf
+\begin{align*}
+  \operatorname{nMAE}_\mathrm{Rauschen} &= \num{0.1402}. \\
+  \operatorname{Genauigkeit} &= \num{0.8879 \pm 0.0169}
+\end{align*}
+Der \gls{nMAE} der Regression nach der Variablenauswahl (\emph{\SI{70}{\percent} der Ausgangsdaten}) durch das \gls{RF} Verfahren ist geringer als der Fehler der einfahen \gls{MLR}.
+Gleichzeitig ist die Genauigkeit (\emph{ermittelt durch Kreuzvalidierung}) leicht gestiegen.
+
+\begin{figure} [htb]
+  \centering
+  \includestandalone{figures/feature_importance}
+  \caption{Relevanz der Anzahl möglicher erklärender Variablen zur Beschreibung der Datenmatrix.}
+  \label{fig:feature_importance}
+\end{figure}
+
+Die Abweichungen zwischen tatsächlicher und geschätzter Konzentration der Probe sind im Boxplot in \cref{fig:RFerror} dargestellt.
+\begin{figure} [htb]
+  \centering
+  \includestandalone{figures/evaluation/RF}
+  \caption{Normierte Fehler der MLR nach Variablenauswahl durch RF.}
+  \label{fig:RFerror}
+\end{figure}
+
+\subsection{Hauptkomponentenanalyse}
+Bei der \gls{PCR} werden die Hauptkomponenten (\emph{welche aus einer \gls{PCA} gewonnen werden}) verwendet, um daraus die Regressionsparameter zu ermitteln.
+In diesem Fall wird die anschließende Regression durch die \gls{MLR} durchgeführt.
+Die Anzahl der Hauptkomponenten sollte so gewählt werden, dass bei einer möglichst geringen Anzahl an Hauptkomponenten das Bestimmtheitsmaß $R^2$ möglichst groß ist.
+Das Bestimmtheitsmaß entspricht dem Verhältnis zwischen erklärter Varianz zur Gesamtvarianz
+\begin{equation}
+  R^2 = \frac{\sum_{i = 1}^n (\hat{y_i} - \bar{y})^2}{\sum_{i=1}^n (y_i - \bar{y})^2} = \frac{\text{erklärte Variation}}{\text{Gesamtvariation}}.
+\end{equation}
+In diesem Fall kann die Gesamtvarianz der Datenmatrix durch fünf Hauptkomponenten beschrieben werden.
+Das kumulierte Bestimmtheitsmaß in Abhängigkeit zur gewählten Anzahl an Hauptkomponenten ist in \cref{fig:variance} dargestellt, die Bestimmtheitsmaße der einzelnen Hauptkomponenten sind in \cref{tab:Bestimmtheit} aufgeführt.
+\begin{figure} [htb]
+  \centering
+  \includestandalone{figures/variance}
+  \caption{Kumuliertes Bestimmtheitsmaß $R^2$ der $n_\mathrm{PC}$ Hauptkomponenten.}
+  \label{fig:variance}
+\end{figure}
+\begin{table} [htb]
+  \centering
+  \caption{Bestimmtheitsmaße $R^2$ der Hauptkomponenten.}
+  \label{tab:Bestimmtheit}
+  \begin{tabular}{*5{c}}
+    \toprule
+    1\,PC & 2\,PC & 3\,PC & 4\,PC & 5\,PC \\
+    \midrule
+    \num[round-precision=4]{0.8920} & \num[round-precision=3]{0.0786} & \num[round-precision=3]{0.0224} & \num{0.0040} & \num{0.0029} \\
+    \bottomrule
+  \end{tabular}
+\end{table}
+
+Im Gegensatz zur Variablenauswahl gehen bei der Hauptkomponentenanalyse durch die Dimensionsreduktion weniger Informationen verloren.
+Daraus resultiert ein nochmals kleinerer Fehler sowohl für die Referenzdaten ohne Rauschen
+\begin{equation*}
+  \operatorname{nMAE} = \num{9.4348888352067e-16},
+\end{equation*}
+als auch für die Referenzdaten mit Rauschanteil
+\begin{align*}
+  \operatorname{nMAE}_\mathrm{Rauschen} &= \num{0.1244}, \\
+  \operatorname{Genauigkeit} &= \num{0.9211 \pm 0.0155}.
+\end{align*}
+
+Die Abweichungen zwischen tatsächlicher und geschätzter Konzentration der Probe sind im Boxplot in \cref{fig:PCRerror} dargestellt.
+\begin{figure} [htb]
+  \centering
+  \includestandalone{figures/evaluation/PCR}
+  \caption{Normierte Fehler der MLR nach Dimensionsreduktion durch PCA.}
+  \label{fig:PCRerror}
+\end{figure}
+
+\subsection{Partielle Regression der kleinsten Quadrate}
+Das letzte zu betrachtende Verfahren ist die \gls{PLS}.
+Wie bei der \gls{PCA} werden bei der \gls{PLS} Hauptkomponenten berechnet, aus denen die Regressionsparameter bestimmt werden.
+Im Gegensatz zur \gls{PCA} werden aber die erklärten Variablen mit in die Berechnung der Hauptkomponenten eingebunden.
+Außerdem ist bereits eine Methode zur Bestimmung der Regressionsparameter in dem Algorithmus enthalten, weshalb hier keine Regression mittels \gls{MLR} durchgeführt werden muss.
+
+Aus der Validierung mit den Referenzdaten ergibt sich ein Fehler von
+\begin{equation*}
+  \operatorname{nMAE} = \num{1.224098492420176e-15}.
+\end{equation*}
+Wird den Referenzdaten noch das Rauschen hizugefügt, steigt die Abweichung auf
+\begin{align*}
+  \operatorname{nMAE}_\mathrm{Rauschen} &= \num{0.1228}, \\
+  \operatorname{Genauigkeit} &= \num{0.9231 \pm 0.0148}.
+\end{align*}
+Die Genauigkeit ist im Vergleich zur \gls{PCR} gestiegen.
+Die Abweichungen zwischen tatsächlicher und geschätzter Konzentration der Probe sind im Boxplot in \cref{fig:PLSerror} dargestellt.
+\begin{figure} [htb]
+  \centering
+  \includestandalone{figures/evaluation/PLS}
+  \caption{Fehler der PLS.}
+  \label{fig:PLSerror}
+\end{figure}
+
+% \section{Zusammenfassung}
+
+% Die aus der Validierung gewonnen Ergebnisse werden hier noch einmal zusammengefasst.
+
+% Alle getesteten Verfahren eignen sich für die multivariate Analyse der in dieser Arbeit untersuchten Spektren.
+% Bei genauer Betrachtung unterscheiden sich die einzelnen Modelle hinsichtlich ihrer Vorhersage-Genauigkeit in Abhängigkeit von den verwendeten Ausgangsdaten.
+% Daher lässt sich keine allgemeingültige Aussage darüber treffen, welches Verfahren den anderen überlegen ist.
+
+% \begin{table} [htb]
+%   \centering
+%   \caption{Gegenüberstellung der Ergebnisse aus der Validierung.}
+%   \begin{tabular}{lSSSS}
+%     \toprule
+%     Verfahren & \multicolumn{2}{c}{ohne Rauschen} & \multicolumn{2}{c}{mit Rauschen} \\
+%     \cmidrule(lr){2-3} \cmidrule(lr){4-5}
+%     & \multicolumn{1}{c}{nMAE} & \multicolumn{1}{c}{Score} & \multicolumn{1}{c}{nMAE} & \multicolumn{1}{c}{Score} \\
+%     \midrule
+%     MLR & \num{1.101e-15} & \num{1.0} & \num{0.1442} & \num{0.8849} \\
+%     RF & \num{9.076e-16} & \num{1.0} & \num{0.1402} & \num{0,8879} \\
+%     PCR & \num{9.435e-16} & \num{1.0} & \num{0.1244} & \num{0.9211} \\
+%     PLS & \num{1.224e-15} & \num{1.0} & \num{0.1228} & \num{0.9231} \\
+%     \bottomrule
+%   \end{tabular}
+% \end{table}
+
+
+
+
+
+\section{Zusammenfassung}
+In dieser Arbeit werden photoakustische Spektren von Gasgemischen mehrerer \gls{VOC} ausgewertet.
+Weil ein linearer Zusammenhang zwischen dem \gls{PA}-Signal (\emph{Wert des Spektrums}) und der Konzentration der einzelnen \gls{VOC} besteht, wird eine Regressionsanalyse durchgeführt, um Rückschlüsse auf die Zusammensetzung der Probe und die Konzentrationen der einzelnen Bestandteile zu erhalten.
+
+Bei Spektren mit sich überlagernden Banden müssen Verfahren der \gls{MVA} verwendet werden um die gewünschten Informationen aus den Spektren zu erhalten.
+In der \gls{MVA} wird dabei die Abhängigkeit einer Zielgröße von mehrerer Einflussgrößen ausgewertet.
+Ziel der Analyse kann dabei entweder die Klassifizierung oder die Regression sein.
+Hier findet die Regressionsanalyse Anwendung zur Bestimmung der einzelnen Konzentrationen und die Klassifikation zur Variablenauswahl.
+Folgende Verfahren werden näher betrachtet:
+\begin{description}
+  \item[MLR] Die multiple lineare Regression gilt als Standardverfahren der mehrfach linearen Regressionsanalyse.
+    In dieser Arbeit dient dieses Analyseverfahren als Regressionsverfahren für den gesamten Datensatz und als Regressionsverfahren für die reduzierten Datensätze (\emph{reduziert durch den \gls{RF} Algorithmus und die \gls{PCA}}).
+  \item[RF]  Das Random Forest Verfahren dient zur Reduzierung der vorhersagenden Variablen durch eine sinvolle Variablenauswahl.
+    Die anschließende Regression übernimmt die \gls{MLR}, es kann aber auch ein beliebiges anderes Regressionsverfahren verwendet werden.
+  \item[PCR] Die Hauptkomponentenanalyse dient zur Reduzierung der vorhersagenden Variablen durch eine Dimensionsreduktion.
+    Dabei werden die vorhersagenden Variablen zu weniger, aber dafür aussagekräftigeren Variablen zusammengefasst.
+    Die anschließende Regression übernimmt die \gls{MLR}, es kann aber auch ein beliebiges anderes Regressionsverfahren verwendet werden.
+  \item[PLS] Bei der partiellen Regression der kleinsten Quadrate wird intern ebenfalls eine Diemensionsreduzierung vorgenommen, hier fließen die Zielgrößen mit in die Bestimmung der Hauptkomponenten ein.
+    Ein zusätzlicher Schritt im Algorithmus der \gls{PLS} führt die Regression durch, hier wird also kein zusätzliches Regressionsverfahren benötigt.
+\end{description}
+
+\paragraph{} Der verwendete Datensatz ist in \SI{70}{\percent} Trainingsdaten und \SI{30}{\percent} Validierungsdaten unterteilt.
+In \cref{fig:errorcomp} und \cref{tab:ergebnisse} sind der \gls{nMAE} (\emph{Abweichung zwischen Vorhersage und tatsächlichem Zielwert}) und die Genauigkeit (\emph{Ergebniss der Krezvalidierung}) der einzelnen Verfahren angegeben.
+% Die Abweichung zwischen Vorhersage und tatsächlichem Zielwert (\emph{Konzentration}) der einzelnen Verfahren ist in \cref{tab:ergebnisse} als \gls{nMAE} angegeben.
+
+\begin{figure} [htb]
+  \centering
+  \includestandalone{figures/errorcomp}
+  \caption{Normierte Fehler der einzelnen Verfahren. nMAE (\emph{Punkt}), minimaler und maximaler nMAE (\emph{roter Balken}).}
+  \label{fig:errorcomp}
+\end{figure}
+
+\begin{table} [htb]
+  \sisetup{round-precision = 4}
+  \centering
+  \caption{Gegenüberstellung der Ergebnisse aus der Validierung.}
+  \label{tab:ergebnisse}
+  \begin{tabular}{lSS}
+    \toprule
+    % Verfahren & \multicolumn{2}{c}{ohne Rauschen} & \multicolumn{2}{c}{mit Rauschen} \\
+    % \cmidrule(lr){2-3} \cmidrule(lr){4-5}
+    Verfahren & \multicolumn{1}{c}{nMAE} & \multicolumn{1}{c}{Score} \\
+    \midrule
+    MLR & \num{0.1442} & \num{0.8849} \\
+    RF + MLR & \num{0.1402} & \num{0,8879} \\
+    PCA + MLR & \num{0.1244} & \num{0.9211} \\
+    PLS & \num{0.1228} & \num{0.9231} \\
+    \bottomrule
+  \end{tabular}
+\end{table}
+
+In dieser Betrachtung wird der Rechenaufwand zur Erstellung der Modelle, beziehungsweise zur Anwendung der erstellten Modelle außen vor gelassen.
+Die Validierung der einzelnen Methoden zeigt, dass es sich bei der \gls{PLS} um das Verfahren mit dem geringsten Fehler (\emph{der höchsten Genauigkeit}) handelt.
+Dennoch haben die Verfahren \gls{RF} und \gls{PCA} ihre eigenen Vorteile und sind in entsprechenden Anwendungsbereichen der \gls{PLS} überlegen.

@@ -1,0 +1,35 @@
+%!TEX program = lualatex
+\documentclass[tikz]{standalone}
+\usepackage{luatex85, shellesc}
+\input{../template/includes}
+
+%usetikzlibrary{}
+\usepackage{pgfplots, siunitx}
+\pgfplotsset{colormap name=viridis}
+
+\begin{document}
+%\def\filename{propane_1702080947.csv}
+\IfStandalone{ \def\filename{data/response_295.csv} }
+             { \def\filename{figures/data/propane_1702080947.csv} }
+
+\begin{tikzpicture}
+      \begin{axis}[%title=Approximiertes Strahlungsspektrum durch Voigt Profil,
+                   x tick label style={/pgf/number format/.cd,%
+                        scaled x ticks = false,
+                        set thousands separator={},
+                        set decimal separator={,},
+                        fixed},%
+                   xlabel={$\lambda \, /\, \si{nm}$},
+                   ylabel={$I\, /\, \SI{e-3}{\watt}$},
+                   xmin=3385, xmax=3393,
+                   ymin=0
+                  ]
+
+      \addplot [only marks, mark=o] table [x=wavelength, y=power, col sep=comma] {data/BristolSpectra.csv};
+      
+      \addplot [red, mark=none] table [x=wavelength, y=power, col sep=comma] {data/voigt.csv};
+      
+      \legend{Messung,Voigt Profil}
+      \end{axis}
+      \end{tikzpicture}
+\end{document}

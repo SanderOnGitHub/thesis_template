@@ -1,0 +1,115 @@
+% !TEX root = ../thesis.tex
+\chapter[Einleitung]{Einleitung}
+
+Eine einfache Liste:
+\begin{itemize}
+  \item Erstes Listenelement
+  \item Zweites Listenelement
+  \begin{itemize}
+    \item Unterelement des zweiten Listenelements
+  \end{itemize}
+\end{itemize}
+
+eine nummerierte Liste:
+\begin{enumerate}%[label=\roman*]
+  \item Erstes Listenelement
+  \item Zweites Listenelement
+  \begin{enumerate}
+    \item Unterelement des zweiten Listenelements
+  \end{enumerate}
+\end{enumerate}
+
+Ein Beispiel einer Liste zur Beschreibung unterschiedlicher Verfahren:
+\begin{description}%[style=nextline]
+  \item[Verfahren A] Beschreibung von Verfahren A.
+  \item[Verfahren B] Beschreibung von Verfahren B.
+\end{description}
+
+\noindent Eine einfache Gleichung
+\begin{equation}
+    a^2 + b^2 = c^2
+    \label{eq:example}
+\end{equation}
+mit dem entsprechenden Verweis auf \ref{eq:example}.
+
+\begin{subequations} 
+  \begin{align}
+      \int S_\mathrm{ref}\mathrm{d}\lambda &= f_\mathrm{ko} \cdot \int S_\mathrm{pas}\mathrm{d}\lambda \label{eq:referencefactor1} \\
+      \sum S_\mathrm{ref}(\lambda)\Delta\lambda &= f_\mathrm{ko} \cdot \sum S_\mathrm{pas}(\lambda)\Delta\lambda \label{eq:referencefactor2}
+  \end{align}
+\end{subequations}
+
+\begin{figure}%[htb]
+  \centering
+  \includegraphics[scale=.3]{figures/GHS01}
+  \caption{Beispiel einer Abbildung (png).}
+  \label{fig:GHS01}
+\end{figure}
+
+\begin{figure}%[htb]
+  \centering
+  \includestandalone{figures/pas_zelle}
+  \caption{Beispiel einer Abbildung (tikz).}
+  \label{fig:PasZelle}
+\end{figure}
+
+
+\begin{figure}%[htb]
+  \centering
+  \includestandalone{figures/voigtlaser}
+  \caption{Beispiel Spektrum der Strahlungsquelle und approximation durch Voigt Profil (tikz, pgfplots).}
+  \label{fig:VoigtProfil}
+\end{figure}
+
+Eine einfache Tabelle:
+\begin{table}%[htb]
+  \centering
+  \caption{Eine sehr einfache Tabelle. Caption über der Tabelle.}
+	\label{tab:simple}
+	\begin{tabular}{lcr}
+        \toprule
+        links & mitte & rechts \\
+        \midrule
+        a & b & c \\
+        eins & zwei & drei \\
+		\bottomrule
+	\end{tabular}
+\end{table}
+
+\begin{table}%[htb]
+  \centering
+  \caption{Zahlen sind an der Kommastelle ausgerichtet.}
+	\label{tab:simple2}
+	\begin{tabular}{l*2{S[table-format=3.2]}}
+        \toprule
+         & l $\, /\, \si{m}$ & t $\, /\, \si{s}$ \\
+        \midrule
+        a & 84.92 & 5.7 \\
+        a & 84.9 & 55.7 \\
+		\bottomrule
+	\end{tabular}
+\end{table}
+
+\begin{table}%[htb]
+  \centering
+  \caption{Eine etwas aufwendigere Tabelle.}
+  \label{tab:anmWerte}
+  \begin{tabular}{c*4{S}}
+    \toprule
+    & \multicolumn{2}{c}{a} & \multicolumn{2}{c}{b}\\%\multirow{2}{*}{$m$}
+    \cmidrule(l){2-3}\cmidrule(l){4-5}
+    $i$ & {$a_1$} & {$a_2$} & {$b_1$} & {$b_2$} \\
+    \midrule
+    0 & 0    & 1.21 & 2.23 & 3.23 \\
+    1 & 0.58 & 1.69 & 2.71 & 3.72 \\
+    2 & 0.97 & 2.13 & 3.17 & 4.19 \\ [1.2ex]
+    $\Sigma$ & 1.55 & 5.03 & 8.09 & 11.14 \\
+    \bottomrule
+  \end{tabular}
+\end{table}
+
+\Gls{MA} wird das erste mal im Text ausgeschrieben und daraufhin mit \gls{MA} abgekürzt.
+\cite{bruhns_2015,saalberg_2017,saalberg_2016}
+\paragraph{}
+\SI[round-precision=2]{3.2}{\micro\meter}
+(\emph{Spektralbande})

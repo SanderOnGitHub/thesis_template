@@ -1,0 +1,79 @@
+%!TEX program = lualatex
+%
+% Unofficial Template for Master and Bachelor thesis
+% University of Applied Sciences Hamburg
+% Faculty of Engineering and Computer Science
+% Department of Mechanical Engineering and Production Management
+%
+% Author: Sander Vervoort (sander.vervoort@haw-hamburg.de)
+% Date: 04.03.2020
+% Version: 0.1
+
+
+\documentclass[a4paper, 12pt, BCOR=1cm, ngerman, numbers=noenddot]{scrbook}
+
+%\makeindex 								% uncomment if index should be created
+% and uncomment '\printindex' at the bottom
+
+
+%\input{template/config} 				% Configuration (e.g., author) go into 'config.tex'
+\input{template/includes}
+\input{glossary}
+\bibliography{bibliography}
+\begin{document}
+
+\author{Sander Vervoort}
+\title{Auswertung photoakustischer Spektren durch multivariate Analysemethoden}
+
+% \maketitle
+\begin{titlepage}
+  \includepdf[pages=-]{template/MuP_Deckblatt_mit_gruenen_Balken.pdf}
+  % \includepdf[pages=-]{template/MuP_Deckblatt_ohne_gruenen_Balken.pdf}
+\end{titlepage}
+\pagenumbering{Roman}
+
+% German abstract
+\begin{otherlanguage}{ngerman}
+  \input{abstract/abstract_de}
+\end{otherlanguage}
+
+% \clearpage{\thispagestyle{empty}\cleardoublepage} % Wenn deutsches und englisches Abstract nicht auf eine Seite passen
+
+% English abstract
+\begin{otherlanguage}{english}
+  \input{abstract/abstract_en}
+\end{otherlanguage}
+
+{\hypersetup{hidelinks}\tableofcontents} % hide the red boxes around links
+%\tableofcontents
+%\include{glossary}
+
+\clearpage % correct page number for TOC
+\pagenumbering{arabic} % change to arabic
+
+\include{chapters/01_Introduction}
+% \include{chapters/02_StateOfTheArt}
+% \include{chapters/03_Methodology}
+% \include{chapters/04_Implementation}
+% \include{chapters/05_Evaluation}
+% \include{chapters/06_Conclusion}
+% \include{chapters/07_Summary}
+
+\clearpage % correct page number for TOC
+\clearpage{\thispagestyle{empty}\cleardoublepage}
+\appendix 								% uncomment these two lines if you whish
+\pagenumbering{roman}
+\printbibliography
+\addcontentsline{toc}{chapter}{Literatur} % adds Literatur to TOC
+
+%\printglossary
+\glsfindwidesttoplevelname
+\setglossarystyle{alttree}
+\printnoidxglossaries
+
+
+% \listoffigures
+% \listoftables
+% \lstlistoflistings
+\includepdf[pages=-]{template/Selbststaendigkeitserklaerung_Internet_MuP.pdf}
+\end{document}
