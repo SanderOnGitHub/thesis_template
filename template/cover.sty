@@ -7,6 +7,8 @@
 
 \RequirePackage{kvoptions}
 \RequirePackage{ifthen}
+\RequirePackage{iflang}
+
 
 \PassOptionsToPackage{rgb}{xcolor}
 \RequirePackage{xcolor}
@@ -20,6 +22,18 @@
 
 \DeclareBoolOption{print}
 \ProcessKeyvalOptions{cover}
+
+\def\ThesisTitle#1#2{\def\deTitle{#1}\def\enTitle{#2}}
+
+\def\deType{cover@type}
+% \def\deTitle{\title}
+
+\def\deFacultyName{Fakult\"at Technik und Informatik}
+\def\enFacultyName{Faculty of Engineering and Computer Science}
+
+\def\deDepartmentName{Department Maschinenbau und Produktion}
+\def\enDepartmentName{Department of Mechanical Engineering and Production Management}
+
 
 \renewcommand*{\maketitle}{
   \begin{titlepage}%
@@ -51,42 +65,42 @@
     \colorbox{HAWBannerColor}{%
       %% use a minipage that is the size of the colored banner
       %% center the minipage
-      \begin{minipage}[l][10cm][c]{\paperwidth}%
+      \begin{minipage}[l][10cm][t]{\paperwidth}%
         %% put the box on the right side
         \hspace*{0.175\textwidth}
         \parbox[t]{0.7\textwidth}{%
-          {\raggedleft\bfseries\Huge theHAWThesisType
+          \raggedleft  
+          \vspace{2.5cm}
+          \bfseries\fontsize{20}{20}\selectfont {\deType}xxxxxx
 
-          \vspace{2cm}
-          \Large\@author
+          \vspace{1.8cm}
+          \fontsize{14}{14}\selectfont \@author
 
           \vspace{.5cm}
-          \@title
-
-        }}%
+          \fontsize{18}{20}\selectfont
+          \IfLanguageName{ngerman}{
+            \deTitle
+          }{
+            \enTitle
+          }%\title
+        }%
       \end{minipage}%
     }
   \end{textblock*}
   %% HAW information
-  \newlength{\haw@xpos}\newlength{\haw@fw}
-  \setlength{\haw@xpos}{2cm}
-  \setlength{\haw@fw}{\paperwidth}
-  \addtolength{\haw@fw}{-1.6\haw@xpos}
-  \begin{textblock*}{2cm}(\haw@xpos,0.875\paperheight)
-    \begin{minipage}[c]{\haw@fw}
-      \centering\newlength{\haw@tw}
-      \settowidth{\haw@tw}{\normalfont\itshape Fakult\"at Technik und Informatik}
-      \parbox[t]{\haw@tw}{%
-        \normalfont\itshape%
-        Fakult\"at Technik und Informatik\\
-        Department Maschinenbau und Produktion
+  \begin{textblock*}{17.4cm}(2cm,25.9cm)
+    \begin{minipage}[c]{17.4cm}
+      \centering
+      \parbox[t]{0.49\textwidth}{%
+        \textsf{\itshape%
+        \deFacultyName \\
+        \deDepartmentName}
       }\hfill
-      \settowidth{\haw@tw}{\normalfont\itshape Faculty of Engineering and Computer Science}
-      \parbox[t]{\haw@tw}{%
-        \normalfont\itshape%
-        Faculty of Engineering and Computer Science\\
-        Department of Mechanical Engineering and \\Production Management
-      }
+      \begin{minipage}[t]{0.49\textwidth}%
+        \raggedleft\textsf{\itshape
+        \enFacultyName
+        \enDepartmentName}
+      \end{minipage}
     \end{minipage}
   \end{textblock*}
   \null\newpage
