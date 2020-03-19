@@ -25,8 +25,17 @@
 
 \def\ThesisTitle#1#2{\def\deTitle{#1}\def\enTitle{#2}}
 
-\def\deType{cover@type}
-% \def\deTitle{\title}
+\def\firstExaminer#1{\def\@firstExaminer{#1}}
+\def\secondExaminer#1{\def\@secondExaminer{#1}}
+\def\supervisor#1{\def\@supervisor{#1}}
+
+\def\ThesisType#1{\def\@ThesisType{#1}}
+\def\DegreeProgram#1{\def\@DegreeProgram{#1}}
+\def\Company#1{\def\@Company{#1}}
+\Company{} % if no cooperation
+
+\def\deUniversityName{Hochschule f\"ur Angewandte Wissenschaften Hamburg}
+\def\enUniversityName{Hamburg University of Applied Sciences}
 
 \def\deFacultyName{Fakult\"at Technik und Informatik}
 \def\enFacultyName{Faculty of Engineering and Computer Science}
@@ -36,6 +45,17 @@
 
 
 \renewcommand*{\maketitle}{
+  \IfLanguageName{ngerman}{
+    \title{\deTitle}
+    \ifthenelse{\equal{\@ThesisType}{MA}}{
+      \def\@ThesisTypeLong{Masterarbeit}
+      \def\ExaminationType{Masterpr\"ufung}
+    }{\def\ExaminationType{Bachelor\"ufung}}
+  }{
+    \title{\enTitle}
+  }%\title
+
+  %% The Cover Page
   \begin{titlepage}%
   \begingroup
   \thispagestyle{empty}%
@@ -50,7 +70,7 @@
   }
 
   %% use HAW for online version, nothing if the file is to be printed
-  \begin{textblock*}{2cm}(10cm,2cm)
+  \begin{textblock*}{2cm}(10cm,1cm)
     \begin{minipage}[r]{\textwidth}%
       \ifthenelse{\boolean{cover@print}}{ % hide logo if printer is true
         \relax
@@ -71,18 +91,14 @@
         \parbox[t]{0.7\textwidth}{%
           \raggedleft  
           \vspace{2.5cm}
-          \bfseries\fontsize{20}{20}\selectfont {\deType}xxxxxx
+          \bfseries\fontsize{20}{20}\selectfont {\@ThesisTypeLong}
 
           \vspace{1.8cm}
           \fontsize{14}{14}\selectfont \@author
 
           \vspace{.5cm}
           \fontsize{18}{20}\selectfont
-          \IfLanguageName{ngerman}{
-            \deTitle
-          }{
-            \enTitle
-          }%\title
+          \@title
         }%
       \end{minipage}%
     }
@@ -106,4 +122,33 @@
   \null\newpage
   \endgroup
   \end{titlepage}
+
+  %% The Title Page
+  \begingroup
+    \enlargethispage{\footskip}
+    \thispagestyle{empty}
+    \setlength{\parindent}{0em} %% remove indent
+    \sffamily
+
+    {\centering\vspace*{0.75cm}
+      \bfseries\fontsize{18}{24}\selectfont {\@author}\\
+      \bigskip
+      \bfseries\fontsize{18}{24}\selectfont {\@title}\\%
+    }
+    \vfill
+      \@ThesisTypeLong\ eingereicht im Rahmen der \ExaminationType\\
+      \par im Studiengang \@DegreeProgram\\
+      am \deDepartmentName\\
+      der \deFacultyName\\
+      der \deUniversityName\\
+
+    \ifthenelse{\NOT\equal{\@Company}{}}{
+      \par in Zusammenarbeit mit: \\ \@Company
+    }{}
+
+    \par Erstpr\"ufer*In: \@firstExaminer \\
+    Zweitpr\"ufer*In : \@secondExaminer \\
+    \par Industrielle Betreuer*In: \@supervisor \\
+    \par Abgabedatum: \@date
+  \endgroup
 }
