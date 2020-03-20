@@ -23,16 +23,17 @@
 \DeclareBoolOption{print}
 \ProcessKeyvalOptions{cover}
 
-\def\ThesisTitle#1#2{\def\deTitle{#1}\def\enTitle{#2}}
+\def\ThesisTitle#1#2{\def\@deTitle{#1}\def\@enTitle{#2}}
 
 \def\firstExaminer#1{\def\@firstExaminer{#1}}
 \def\secondExaminer#1{\def\@secondExaminer{#1}}
 \def\supervisor#1{\def\@supervisor{#1}}
+\supervisor{} % if no supervisor
 
 \def\ThesisType#1{\def\@ThesisType{#1}}
 \def\DegreeProgram#1{\def\@DegreeProgram{#1}}
-\def\Company#1{\def\@Company{#1}}
-\Company{} % if no cooperation
+\def\company#1{\def\@company{#1}}
+\company{} % if no cooperation
 
 \def\deUniversityName{Hochschule f\"ur Angewandte Wissenschaften Hamburg}
 \def\enUniversityName{Hamburg University of Applied Sciences}
@@ -45,14 +46,21 @@
 
 
 \renewcommand*{\maketitle}{
-  \IfLanguageName{ngerman}{
-    \title{\deTitle}
-    \ifthenelse{\equal{\@ThesisType}{MA}}{
-      \def\@ThesisTypeLong{Masterarbeit}
-      \def\ExaminationType{Masterpr\"ufung}
-    }{\def\ExaminationType{Bachelor\"ufung}}
+  \ifthenelse{\equal{\@ThesisType}{MA}}{
+    \def\@deThesisTypeLong{Masterarbeit}
+    \def\@enThesisTypeLong{Master Thesis}
+    \def\ExaminationType{Masterpr\"ufung}
   }{
-    \title{\enTitle}
+    \def\@deThesisTypeLong{Bachelorarbeit}
+    \def\@enThesisTypeLong{Bachelor Thesis}
+    \def\ExaminationType{Bachelor\"ufung}
+  }
+  \IfLanguageName{ngerman}{
+    \title{\@deTitle}
+    \def\@ThesisTypeLong{\@deThesisTypeLong}
+  }{
+    \title{\@enTitle}
+    \def\@ThesisTypeLong{\@enThesisTypeLong}
   }%\title
 
   %% The Cover Page
@@ -121,16 +129,16 @@
   \end{textblock*}
   \null\newpage
   \endgroup
-  \end{titlepage}
+  
+  \clearpage{\thispagestyle{empty}\cleardoublepage}
 
   %% The Title Page
   \begingroup
-    \enlargethispage{\footskip}
     \thispagestyle{empty}
     \setlength{\parindent}{0em} %% remove indent
     \sffamily
-
-    {\centering\vspace*{0.75cm}
+    
+    {\centering\vspace*{2.25cm}
       \bfseries\fontsize{18}{24}\selectfont {\@author}\\
       \bigskip
       \bfseries\fontsize{18}{24}\selectfont {\@title}\\%
@@ -142,8 +150,8 @@
       der \deFacultyName\\
       der \deUniversityName\\
 
-    \ifthenelse{\NOT\equal{\@Company}{}}{
-      \par in Zusammenarbeit mit: \\ \@Company
+    \ifthenelse{\NOT\equal{\@company}{}}{
+      \par in Zusammenarbeit mit: \\ \@company
     }{}
 
     \par Erstpr\"ufer*In: \@firstExaminer \\
@@ -151,4 +159,5 @@
     \par Industrielle Betreuer*In: \@supervisor \\
     \par Abgabedatum: \@date
   \endgroup
+  \end{titlepage}
 }

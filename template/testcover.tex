@@ -1,10 +1,25 @@
 \documentclass[paper=a4]{scrbook}
 
-\usepackage[print=false]{cover}
-\usepackage[english,ngerman]{babel} 
+\usepackage[
+   a4paper,
+   twoside,
+   bindingoffset=1cm,
+   inner=2.5cm,
+   outer=2.5cm,
+   top=1.5cm,
+   bottom=3.5cm,
+  %  headsep=1.2cm
+]{geometry}
+
+\usepackage[print=true]{cover}
+\usepackage{abstract}
+\usepackage[english,ngerman]{babel}
+
+\usepackage{lipsum} % dummy text
 
 \usepackage[pdfusetitle, bookmarks, colorlinks=true]{hyperref}
 
+\renewcommand\familydefault{\sfdefault}
 \begin{document}
 
 
@@ -13,11 +28,17 @@
 \ThesisTitle{Deutscher Titel}{Englischer Titel}
 \ThesisType{MA} % MA or BE
 \DegreeProgram{Nachhaltige Energiesysteme im Maschinenbau}
-\Company{MyCompany \\Street \\20099 Hamburg}
+\company{MyCompany \\Street \\20099 Hamburg}
 \firstExaminer{Titel und Name}
 \secondExaminer{Titel und Name}
 \supervisor{Titel und Name}
 
+\abstract{\lipsum[1-2]}{\lipsum[1]}
+% \abstract{German Abstract here}{English Abstract here}
+\keywords{German Keywords here}{English Keywords here}
+
 \maketitle
+\clearpage{\thispagestyle{empty}\cleardoublepage}
+\makeabstract
 
 \end{document}

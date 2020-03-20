@@ -1,0 +1,34 @@
+% \NeedsTeXFormat{LaTeX2e}
+% \ProvidesPackage{coverpage}[2020/03/12 v0.1 HAW MP Thesis Style Cover]
+
+\RequirePackage{enumitem}
+
+\long\def\abstract#1#2{\long\def\@deAbstract{#1}\long\def\@enAbstract{#2}}
+\def\keywords#1#2{\def\@deKeywords{#1}\def\@enKeywords{#1}}
+\newcommand{\makeabstract}{
+  \hypersetup{pdfkeywords={\@enKeywords ,\ \@enKeywords}}
+  \sffamily % the abstract page in sans serif
+  % \thispagestyle{empty}
+  \chapter*{Zusammenfassung}
+  \addcontentsline{toc}{chapter}{Zusammenfassung} % adds Abstract to TOC
+  \begin{description}[style=nextline]
+    \item[\@author]
+    \item[Thema der \@deThesisTypeLong]
+      \@deTitle
+          % {\small Wenn die Beschreibung kleiner sein soll}
+    \item[Stichworte]
+      \@deKeywords
+    \item[Kurzzusammenfassung]
+      \@deAbstract
+  \end{description}
+  \chapter*{}
+  \begin{description}[style=nextline]
+    \item[\@author]
+    \item[\@enThesisTypeLong\ title] 
+      \@enTitle
+    \item[Keywords]
+      \@enKeywords
+    \item[Abstract]
+      \@enAbstract
+  \end{description}
+}
