@@ -2,11 +2,11 @@
 % \ProvidesPackage{coverpage}[2020/03/12 v0.1 HAW MP Thesis Style Cover]
 
 \RequirePackage{enumitem}
+\RequirePackage{booktabs,multicol}
 
 \long\def\abstract#1#2{\long\def\@deAbstract{#1}\long\def\@enAbstract{#2}}
 \def\keywords#1#2{\def\@deKeywords{#1}\def\@enKeywords{#1}}
 \newcommand{\makeabstract}{
-  \hypersetup{pdfkeywords={\@enKeywords ,\ \@enKeywords}}
   \sffamily % the abstract page in sans serif
   % \thispagestyle{empty}
   \chapter*{Zusammenfassung}
@@ -31,4 +31,27 @@
     \item[Abstract]
       \@enAbstract
   \end{description}
+}
+
+\newcommand{\makeStatutoryDeclaration}{
+  \setlength{\parindent}{0em} %% remove indent
+  \setlength{\parskip}{1em}
+  \chapter*{Erklärung zur selbstständigen Bearbeitung der Arbeit}
+
+  Hiermit versichere ich,
+  \par \emph{\@author}
+  \par dass ich die vorliegende \@deThesisTypeLong\ − bzw. bei einer Gruppenarbeit die entsprechend gekennzeichneten Teile der Arbeit − mit dem Thema:
+  \par \emph{\@title}
+  \par ohne fremde Hilfe selbständig verfasst und nur die angegebenen Quellen und Hilfsmittel benutzt habe.
+  Wörtlich oder dem Sinn nach aus anderen Werken entnommene Stellen sind unter Angabe der Quellen kenntlich gemacht.
+  \par {\centering \small - die folgende Aussage ist bei Gruppenarbeiten auszufüllen und entfällt bei Einzelarbeiten -}
+  \par Die Kennzeichnung der von mir erstellten und verantworteten Teile der \@deThesisTypeLong\ ist erfolgt durch:
+
+  \vspace{4cm}
+  \raggedleft
+  \begin{tabular}{ccc}
+    \hspace{3cm} & \hspace{3cm} & \hspace{6cm} \\
+    \cmidrule(l){1-1}\cmidrule(l){2-2}\cmidrule(l){3-3}
+    \small Ort & \small Datum & \small Unterschrift \\
+  \end{tabular}
 }
