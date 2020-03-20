@@ -136,6 +136,7 @@
   \begingroup
     \thispagestyle{empty}
     \setlength{\parindent}{0em} %% remove indent
+    \setlength{\parskip}{1em}
     \sffamily
     
     {\centering\vspace*{2.25cm}
@@ -144,19 +145,19 @@
       \bfseries\fontsize{18}{24}\selectfont {\@title}\\%
     }
     \vfill
-      \@ThesisTypeLong\ eingereicht im Rahmen der \ExaminationType\\
-      \par im Studiengang \@DegreeProgram\\
-      am \deDepartmentName\\
-      der \deFacultyName\\
-      der \deUniversityName\\
+      \@ThesisTypeLong\ eingereicht im Rahmen der \ExaminationType
+      \par im Studiengang \@DegreeProgram \\
+      am \deDepartmentName \\
+      der \deFacultyName \\
+      der \deUniversityName
 
     \ifthenelse{\NOT\equal{\@company}{}}{
       \par in Zusammenarbeit mit: \\ \@company
     }{}
 
     \par Erstpr\"ufer*In: \@firstExaminer \\
-    Zweitpr\"ufer*In : \@secondExaminer \\
-    \par Industrielle Betreuer*In: \@supervisor \\
+    Zweitpr\"ufer*In : \@secondExaminer
+    \par Industrielle Betreuer*In: \@supervisor
     \par Abgabedatum: \@date
   \endgroup
   \end{titlepage}
