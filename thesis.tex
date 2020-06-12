@@ -9,8 +9,8 @@
 % Date: 04.03.2020
 % Version: 0.1
 
-
-\documentclass[a4paper, 12pt, BCOR=1cm, ngerman, numbers=noenddot]{scrbook}
+\documentclass[MA, print=false]{hawstyle} % MA / BA, 
+% \documentclass[a4paper, 12pt, BCOR=1cm, ngerman, numbers=noenddot]{scrbook}
 
 %\makeindex 								% uncomment if index should be created
 % and uncomment '\printindex' at the bottom
@@ -20,38 +20,37 @@
 \input{template/includes}
 \input{glossary}
 \bibliography{bibliography}
+
 \begin{document}
 
-\author{Sander Vervoort}
-\title{Auswertung photoakustischer Spektren durch multivariate Analysemethoden}
+\author{Max Mustermann}
+\date{01.01.2021}
+\ThesisTitle{Deutscher Titel}{Englischer Titel}
+% \ThesisType{MA} % MA or BE
+\DegreeProgram{Nachhaltige Energiesysteme im Maschinenbau}
+\company{MyCompany \\Street \\20099 Hamburg}
+\firstExaminer{Titel und Name}
+\secondExaminer{Titel und Name}
+\supervisor{Titel und Name}
 
-% \maketitle
-\begin{titlepage}
-  \includepdf[pages=-]{template/MuP_Deckblatt_mit_gruenen_Balken.pdf}
-  % \includepdf[pages=-]{template/MuP_Deckblatt_ohne_gruenen_Balken.pdf}
-\end{titlepage}
-\pagenumbering{Roman}
+\abstract{\lipsum[1-2]}{\lipsum[1]}
+% \abstract{German Abstract here}{English Abstract here}
+\keywords{German Keywords here}{English Keywords here}
 
-% German abstract
-\begin{otherlanguage}{ngerman}
-  \input{abstract/abstract_de}
-\end{otherlanguage}
+\maketitle
+\clearpage{\thispagestyle{empty}\cleardoublepage}
+\makeabstract
 
-% \clearpage{\thispagestyle{empty}\cleardoublepage} % Wenn deutsches und englisches Abstract nicht auf eine Seite passen
 
-% English abstract
-\begin{otherlanguage}{english}
-  \input{abstract/abstract_en}
-\end{otherlanguage}
-
-{\hypersetup{hidelinks}\tableofcontents} % hide the red boxes around links
+% {\hypersetup{hidelinks}\tableofcontents} % hide the red boxes around links
 %\tableofcontents
 %\include{glossary}
 
 \clearpage % correct page number for TOC
 \pagenumbering{arabic} % change to arabic
 
-\include{chapters/01_Introduction}
+\include{chapters/Template}
+% \include{chapters/01_Introduction}
 % \include{chapters/02_StateOfTheArt}
 % \include{chapters/03_Methodology}
 % \include{chapters/04_Implementation}
@@ -75,5 +74,6 @@
 % \listoffigures
 % \listoftables
 % \lstlistoflistings
-\includepdf[pages=-]{template/Selbststaendigkeitserklaerung_Internet_MuP.pdf}
+
+\makeStatutoryDeclaration % Selbststaendigkeitserklaerung
 \end{document}
