@@ -1,0 +1,129 @@
+% \NeedsTeXFormat{LaTeX2e}
+% \ProvidesPackage{coverpage}[2020/03/12 v0.1 HAW MP Thesis Style Cover]
+
+\RequirePackage{ifthen}
+\RequirePackage{iflang}
+
+\PassOptionsToPackage{rgb}{xcolor}
+\RequirePackage{xcolor}
+\RequirePackage[absolute]{textpos}
+\RequirePackage{graphicx}
+
+
+\renewcommand*{\maketitle}{
+  \ifthenelse{\equal{\@ThesisType}{MA}}{
+    \def\@deThesisTypeLong{Masterarbeit}
+    \def\@enThesisTypeLong{Master Thesis}
+    \def\ExaminationType{Masterpr\"ufung}
+  }{
+    \def\@deThesisTypeLong{Bachelorarbeit}
+    \def\@enThesisTypeLong{Bachelor Thesis}
+    \def\ExaminationType{Bachelor\"ufung}
+  }
+  \IfLanguageName{ngerman}{
+    \title{\@deTitle}
+    \def\@ThesisTypeLong{\@deThesisTypeLong}
+  }{
+    \title{\@enTitle}
+    \def\@ThesisTypeLong{\@enThesisTypeLong}
+  }%\title
+
+  %% The Cover Page
+  \begin{titlepage}%
+  \begingroup
+  \thispagestyle{empty}%
+  \enlargethispage{\footskip}%
+  \setlength{\parindent}{0em} % remove indent
+  \sffamily % the title page in sans serif
+
+  \ifthenelse{\boolean{\@print}}{
+    \colorlet{HAWBannerColor}{white}
+  }{
+    \definecolor{HAWBannerColor}{rgb}{0.00,0.78,0.54}
+  }
+
+  %% use HAW for online version, nothing if the file is to be printed
+  \begin{textblock*}{2cm}(10cm,1cm)
+    \begin{minipage}[r]{\textwidth}%
+      \ifthenelse{\boolean{\@print}}{ % hide logo if printer is true
+        \relax
+      }{
+        \includegraphics[width=10cm]{template/HAW_logo}%
+      }
+    \end{minipage}%
+  \end{textblock*}
+
+  %% color bar
+  \begin{textblock*}{10cm}(0cm,9cm)
+    \colorbox{HAWBannerColor}{%
+      %% use a minipage that is the size of the colored banner
+      %% center the minipage
+      \begin{minipage}[l][10cm][t]{\paperwidth}%
+        %% put the box on the right side
+        \hspace*{0.175\textwidth}
+        \parbox[t]{0.7\textwidth}{%
+          \raggedleft  
+          \vspace{2.5cm}
+          \bfseries\fontsize{20}{20}\selectfont {\@ThesisTypeLong}
+
+          \vspace{1.8cm}
+          \fontsize{14}{14}\selectfont \@author
+
+          \vspace{.5cm}
+          \fontsize{18}{20}\selectfont
+          \@title
+        }%
+      \end{minipage}%
+    }
+  \end{textblock*}
+  %% HAW information
+  \begin{textblock*}{17.4cm}(2cm,25.9cm)
+    \begin{minipage}[c]{17.4cm}
+      \centering
+      \parbox[t]{0.49\textwidth}{%
+        \textsf{\itshape%
+        \deFacultyName \\
+        \deDepartmentName}
+      }\hfill
+      \begin{minipage}[t]{0.49\textwidth}%
+        \raggedleft\textsf{\itshape
+        \enFacultyName
+        \enDepartmentName}
+      \end{minipage}
+    \end{minipage}
+  \end{textblock*}
+  \null\newpage
+  \endgroup
+  
+  \clearpage{\thispagestyle{empty}\cleardoublepage}
+
+  %% The Title Page
+  \begingroup
+    \thispagestyle{empty}
+    \setlength{\parindent}{0em} %% remove indent
+    \setlength{\parskip}{1em}
+    \sffamily
+    
+    {\centering\vspace*{2.25cm}
+      \bfseries\fontsize{18}{24}\selectfont {\@author}\\
+      \bigskip
+      \bfseries\fontsize{18}{24}\selectfont {\@title}\\%
+    }
+    \vfill
+      \@ThesisTypeLong\ eingereicht im Rahmen der \ExaminationType
+      \par im Studiengang \@DegreeProgram \\
+      am \deDepartmentName \\
+      der \deFacultyName \\
+      der \deUniversityName
+
+    \ifthenelse{\NOT\equal{\@company}{}}{
+      \par in Zusammenarbeit mit: \\ \@company
+    }{}
+
+    \par Erstpr\"ufer*In: \@firstExaminer \\
+    Zweitpr\"ufer*In : \@secondExaminer
+    \par Industrielle Betreuer*In: \@supervisor
+    \par Abgabedatum: \@date
+  \endgroup
+  \end{titlepage}
+}
