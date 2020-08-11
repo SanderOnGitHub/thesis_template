@@ -1,10 +1,13 @@
 # Vorlage für Master- und Bachelorarbeiten am Department MP der HAW Hamburg
 
-Diese Vorlage richtet sich an Master und Bachelorstudenten aus dem Department Maschinenbau und Produktion der Hochschule für angewandte Wissenschaften Hamburg. Die hier zur verfügung gestellte LaTex Vorlage für Abschlussarbeiten orientiert sich an der Word-Vorlage, welche den Studenten zur Verfügung gestellt wird.
+Diese Vorlage richtet sich an Master- und Bachelorstudierende des Departments Maschinenbau und Produktion der Hochschule für angewandte Wissenschaften Hamburg.
+Die hier zur verfügung gestellte LaTeX Vorlage für Abschlussarbeiten orientiert sich an der Word-Vorlage, welche den Studierenden auf der [MP Departments Webseite](https://www.haw-hamburg.de/storage/studiengaenge/studierende/stg-ti/stg-mp/ba-maschinenbau-entwicklung-und-konstruktion/) zur Verfügung gestellt wird.
 
 Bei der Erstellung Ihrer Abschlussarbeit achten Sie auf den offiziellen [Leitfaden für studentische Arbeiten](Leitfaden_Studentische_Arbeiten_MP.pdf).
 
-- [thesis.tex](thesis.tex) : Das Hauptdokument mit allen grundlegenden Einstellungn
+Die Vorlage umfasst folgende Dokumente:
+- [thesis.tex](thesis.tex) : Das Hauptdokument mit allen grundlegenden Einstellungen.
+- [thesis.pdf](thesis.pdf) : Das kompilierte Dokument im PDF Format.
 - [chapters](/chapters) : Ihre Kapitel.
 - [figures](/figures) : ihre Abbildungn.
 - [hawstyle.cls](hawstyle.cls), [template](/template) : Dateien, welche für die Vorlage benötigt werden.
